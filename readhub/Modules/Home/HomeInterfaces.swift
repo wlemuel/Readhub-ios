@@ -30,7 +30,18 @@ protocol HomeViewInterface: ViewInterface {
 
 protocol HomePresenterInterface: PresenterInterface {
     func configure(with output: Home.ViewOutput) -> Home.ViewInput
+    
+    // MARK: Observables -
+    var topics: Observable<[String]> { get }
+    
+    // MARK: Functions -
+    func getTopicList()
+    
+    func getNewsList()
 }
 
 protocol HomeInteractorInterface: InteractorInterface {
+    func getTopicList(lastCursor: String, pageSize: Int) -> Single<TopicListModel>
+    
+    func getNewsList(lastCursor: String, pageSize: Int) -> Single<NewsListModel>
 }

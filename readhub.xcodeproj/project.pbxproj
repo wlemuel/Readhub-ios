@@ -10,7 +10,6 @@
 		656534F723557D3C00840686 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656534F623557D3C00840686 /* AppDelegate.swift */; };
 		656534F923557D3C00840686 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656534F823557D3C00840686 /* SceneDelegate.swift */; };
 		6565350023557D4300840686 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 656534FF23557D4300840686 /* Assets.xcassets */; };
-		6565350323557D4300840686 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6565350123557D4300840686 /* LaunchScreen.storyboard */; };
 		6565350E23557D4400840686 /* readhubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565350D23557D4400840686 /* readhubTests.swift */; };
 		6565351923557D4400840686 /* readhubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565351823557D4400840686 /* readhubUITests.swift */; };
 		6565353923558DAD00840686 /* BaseWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565353323558DAD00840686 /* BaseWireframe.swift */; };
@@ -30,6 +29,13 @@
 		6565355123559A2F00840686 /* NvController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565355023559A2F00840686 /* NvController.swift */; };
 		6565355423559A8B00840686 /* Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565355323559A8B00840686 /* Initializers.swift */; };
 		6565355623559AC800840686 /* ThemeInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565355523559AC800840686 /* ThemeInitializer.swift */; };
+		6565355A2355AA7800840686 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 656535592355AA7800840686 /* Launch Screen.storyboard */; };
+		65C34E752355B5AE005419D9 /* UIBarButtonItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C34E742355B5AE005419D9 /* UIBarButtonItemExtension.swift */; };
+		65C34E772355B5E1005419D9 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C34E762355B5E1005419D9 /* UIImageExtension.swift */; };
+		65F7031D2355E3F900D7EA19 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F7031C2355E3F900D7EA19 /* TopicViewController.swift */; };
+		65F7031F2355E40A00D7EA19 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F7031E2355E40A00D7EA19 /* NewsViewController.swift */; };
+		65F703212355E41800D7EA19 /* TechnewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F703202355E41800D7EA19 /* TechnewsViewController.swift */; };
+		65F703232355E42800D7EA19 /* BlockchainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F703222355E42800D7EA19 /* BlockchainViewController.swift */; };
 		9643E81759744F1973416021 /* Pods_readhubTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D63CF5F092BFB33FF77DE1 /* Pods_readhubTests.framework */; };
 		9A7B4447AAF584DAE05ABD41 /* Pods_readhub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB701931FEF173B6749EB3E /* Pods_readhub.framework */; };
 		C1C627494411D535161E018C /* Pods_readhub_readhubUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A2F65A400EEB2E149362DFF /* Pods_readhub_readhubUITests.framework */; };
@@ -56,11 +62,10 @@
 		3A2F65A400EEB2E149362DFF /* Pods_readhub_readhubUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_readhub_readhubUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DAEBDBFCC22A7AFFC9A9E8F /* Pods-readhub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readhub.debug.xcconfig"; path = "Target Support Files/Pods-readhub/Pods-readhub.debug.xcconfig"; sourceTree = "<group>"; };
 		5EB701931FEF173B6749EB3E /* Pods_readhub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_readhub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		656534F323557D3C00840686 /* readhub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = readhub.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		656534F323557D3C00840686 /* Readhub+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Readhub+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		656534F623557D3C00840686 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		656534F823557D3C00840686 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		656534FF23557D4300840686 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6565350223557D4300840686 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6565350423557D4300840686 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6565350923557D4400840686 /* readhubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = readhubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6565350D23557D4400840686 /* readhubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = readhubTests.swift; sourceTree = "<group>"; };
@@ -85,6 +90,13 @@
 		6565355023559A2F00840686 /* NvController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NvController.swift; sourceTree = "<group>"; };
 		6565355323559A8B00840686 /* Initializers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initializers.swift; sourceTree = "<group>"; };
 		6565355523559AC800840686 /* ThemeInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeInitializer.swift; sourceTree = "<group>"; };
+		656535592355AA7800840686 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		65C34E742355B5AE005419D9 /* UIBarButtonItemExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtension.swift; sourceTree = "<group>"; };
+		65C34E762355B5E1005419D9 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		65F7031C2355E3F900D7EA19 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
+		65F7031E2355E40A00D7EA19 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		65F703202355E41800D7EA19 /* TechnewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnewsViewController.swift; sourceTree = "<group>"; };
+		65F703222355E42800D7EA19 /* BlockchainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainViewController.swift; sourceTree = "<group>"; };
 		76F72DC5BBB0718226D30AF9 /* Pods-readhub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readhub.release.xcconfig"; path = "Target Support Files/Pods-readhub/Pods-readhub.release.xcconfig"; sourceTree = "<group>"; };
 		78CA7588B4C06E7DD2C14C53 /* Pods-readhub-readhubUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readhub-readhubUITests.release.xcconfig"; path = "Target Support Files/Pods-readhub-readhubUITests/Pods-readhub-readhubUITests.release.xcconfig"; sourceTree = "<group>"; };
 		95D63CF5F092BFB33FF77DE1 /* Pods_readhubTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_readhubTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,7 +161,7 @@
 		656534F423557D3C00840686 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				656534F323557D3C00840686 /* readhub.app */,
+				656534F323557D3C00840686 /* Readhub+.app */,
 				6565350923557D4400840686 /* readhubTests.xctest */,
 				6565351423557D4400840686 /* readhubUITests.xctest */,
 			);
@@ -233,7 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				6565350423557D4300840686 /* Info.plist */,
-				6565350123557D4300840686 /* LaunchScreen.storyboard */,
+				656535592355AA7800840686 /* Launch Screen.storyboard */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -277,6 +289,8 @@
 		6565352F23558D5100840686 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				65C34E742355B5AE005419D9 /* UIBarButtonItemExtension.swift */,
+				65C34E762355B5E1005419D9 /* UIImageExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -305,6 +319,8 @@
 		65653545235599D200840686 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				65F7031B2355E3C900D7EA19 /* controllers */,
+				65F7031A2355D32B00D7EA19 /* View */,
 				65653546235599E700840686 /* HomeInterfaces.swift */,
 				65653547235599E700840686 /* HomePresenter.swift */,
 				65653548235599E700840686 /* HomeViewController.swift */,
@@ -321,6 +337,24 @@
 				6565355523559AC800840686 /* ThemeInitializer.swift */,
 			);
 			path = Initializers;
+			sourceTree = "<group>";
+		};
+		65F7031A2355D32B00D7EA19 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		65F7031B2355E3C900D7EA19 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				65F7031C2355E3F900D7EA19 /* TopicViewController.swift */,
+				65F7031E2355E40A00D7EA19 /* NewsViewController.swift */,
+				65F703202355E41800D7EA19 /* TechnewsViewController.swift */,
+				65F703222355E42800D7EA19 /* BlockchainViewController.swift */,
+			);
+			path = controllers;
 			sourceTree = "<group>";
 		};
 		D45381066ACA32472703A641 /* Frameworks */ = {
@@ -352,7 +386,7 @@
 			);
 			name = readhub;
 			productName = readhub;
-			productReference = 656534F323557D3C00840686 /* readhub.app */;
+			productReference = 656534F323557D3C00840686 /* Readhub+.app */;
 			productType = "com.apple.product-type.application";
 		};
 		6565350823557D4400840686 /* readhubTests */ = {
@@ -442,7 +476,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6565350323557D4300840686 /* LaunchScreen.storyboard in Resources */,
+				6565355A2355AA7800840686 /* Launch Screen.storyboard in Resources */,
 				6565350023557D4300840686 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -571,14 +605,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65C34E752355B5AE005419D9 /* UIBarButtonItemExtension.swift in Sources */,
 				6565353E23558DAD00840686 /* FormatterInterface.swift in Sources */,
+				65F7031F2355E40A00D7EA19 /* NewsViewController.swift in Sources */,
+				65C34E772355B5E1005419D9 /* UIImageExtension.swift in Sources */,
 				656535422355930100840686 /* Constants.swift in Sources */,
 				6565354F235599E700840686 /* HomeWireframe.swift in Sources */,
 				6565353B23558DAD00840686 /* InteractorInterface.swift in Sources */,
+				65F703212355E41800D7EA19 /* TechnewsViewController.swift in Sources */,
 				6565355623559AC800840686 /* ThemeInitializer.swift in Sources */,
 				6565354E235599E700840686 /* HomeInteractor.swift in Sources */,
 				6565353A23558DAD00840686 /* ViewInterface.swift in Sources */,
 				6565354023558DDE00840686 /* ReadhubService.swift in Sources */,
+				65F7031D2355E3F900D7EA19 /* TopicViewController.swift in Sources */,
 				6565354D235599E700840686 /* HomeViewController.swift in Sources */,
 				6565355423559A8B00840686 /* Initializers.swift in Sources */,
 				6565353D23558DAD00840686 /* UIStoryboardExtension.swift in Sources */,
@@ -587,6 +626,7 @@
 				656534F723557D3C00840686 /* AppDelegate.swift in Sources */,
 				6565354B235599E700840686 /* HomeInterfaces.swift in Sources */,
 				656534F923557D3C00840686 /* SceneDelegate.swift in Sources */,
+				65F703232355E42800D7EA19 /* BlockchainViewController.swift in Sources */,
 				65653544235593ED00840686 /* ReadhubModels.swift in Sources */,
 				6565353923558DAD00840686 /* BaseWireframe.swift in Sources */,
 				6565353C23558DAD00840686 /* PresenterInterface.swift in Sources */,
@@ -623,17 +663,6 @@
 			targetProxy = 6565351523557D4400840686 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		6565350123557D4300840686 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6565350223557D4300840686 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		6565351B23557D4400840686 /* Debug */ = {
@@ -763,7 +792,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.wlemuel.readhub;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Readhub+";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -782,7 +811,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.wlemuel.readhub;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Readhub+";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -13,12 +13,19 @@ import RxSwift
 import RxCocoa
 
 final class HomePresenter {
+    
+    // MARK: - Public prperties -
+    var topics: Observable<[String]> {
+        return topicsSubject.asObserver()
+    }
 
     // MARK: - Private properties -
 
     private unowned let view: HomeViewInterface
     private let interactor: HomeInteractorInterface
     private let wireframe: HomeWireframeInterface
+    private let topicsSubject = PublishSubject<[String]>()
+    private let disposeBag = DisposeBag()
 
     // MARK: - Lifecycle -
 
@@ -35,6 +42,40 @@ extension HomePresenter: HomePresenterInterface {
 
     func configure(with output: Home.ViewOutput) -> Home.ViewInput {
         return Home.ViewInput()
+    }
+    
+    func getTopicList() {
+        interactor.getTopicList(lastCursor: "", pageSize: 10)
+            .subscribe(onSuccess: { [weak self] (topicList) in
+                guard let `self` = self else { return }
+                
+                var titles = [String]()
+                
+                for data in topicList.data ?? [] {
+                    titles.append(data.title!)
+                }
+                
+                self.topicsSubject.onNext(titles)
+            }) { (error) in
+                print(error)
+        }.disposed(by: disposeBag)
+    }
+    
+    func getNewsList() {
+        interactor.getNewsList(lastCursor: "", pageSize: 20)
+        .subscribe(onSuccess: { [weak self] (newsList) in
+                guard let `self` = self else { return }
+                
+                var titles = [String]()
+                
+                for data in newsList.data ?? [] {
+                    titles.append(data.title!)
+                }
+                
+                self.topicsSubject.onNext(titles)
+            }) { (error) in
+                print(error)
+        }.disposed(by: disposeBag)
     }
 
 }

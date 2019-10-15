@@ -12,9 +12,34 @@ import Foundation
 import RxSwift
 
 final class HomeInteractor {
+    
 }
 
 // MARK: - Extensions -
 
 extension HomeInteractor: HomeInteractorInterface {
+    func getTopicList(lastCursor: String, pageSize: Int = 10) -> Single<TopicListModel> {
+        return readhubProvider.rx.request(.topicList(lastCursor: lastCursor, pageSize: pageSize))
+            .asObservable().map(TopicListModel.self).asSingle()
+    }
+
+    func getTopicDetail(topicId: String) -> Single<TopicItemModel> {
+        return readhubProvider.rx.request(.topicDetail(topicId: topicId))
+            .asObservable().map(TopicItemModel.self).asSingle()
+    }
+    
+    func getNewsList(lastCursor: String, pageSize: Int = 10) -> Single<NewsListModel> {
+        return readhubProvider.rx.request(.newsList(lastCursor: lastCursor, pageSize: pageSize))
+            .asObservable().map(NewsListModel.self).asSingle()
+    }
+    
+    func getTechnewsList(lastCursor: String, pageSize: Int = 10) -> Single<TechnewsListModel> {
+        return readhubProvider.rx.request(.technewsList(lastCursor: lastCursor, pageSize: pageSize))
+            .asObservable().map(TechnewsListModel.self).asSingle()
+    }
+    
+    func getBlockchainList(lastCursor: String, pageSize: Int = 10) -> Single<BlockchainListModel> {
+        return readhubProvider.rx.request(.blockchainList(lastCursor: lastCursor, pageSize: pageSize))
+            .asObservable().map(BlockchainListModel.self).asSingle()
+    }
 }
