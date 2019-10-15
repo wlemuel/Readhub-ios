@@ -3,18 +3,36 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		656534F723557D3C00840686 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656534F623557D3C00840686 /* AppDelegate.swift */; };
 		656534F923557D3C00840686 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656534F823557D3C00840686 /* SceneDelegate.swift */; };
-		656534FB23557D3C00840686 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656534FA23557D3C00840686 /* ViewController.swift */; };
-		656534FE23557D3C00840686 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 656534FC23557D3C00840686 /* Main.storyboard */; };
 		6565350023557D4300840686 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 656534FF23557D4300840686 /* Assets.xcassets */; };
 		6565350323557D4300840686 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6565350123557D4300840686 /* LaunchScreen.storyboard */; };
 		6565350E23557D4400840686 /* readhubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565350D23557D4400840686 /* readhubTests.swift */; };
 		6565351923557D4400840686 /* readhubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565351823557D4400840686 /* readhubUITests.swift */; };
+		6565353923558DAD00840686 /* BaseWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565353323558DAD00840686 /* BaseWireframe.swift */; };
+		6565353A23558DAD00840686 /* ViewInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565353423558DAD00840686 /* ViewInterface.swift */; };
+		6565353B23558DAD00840686 /* InteractorInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565353523558DAD00840686 /* InteractorInterface.swift */; };
+		6565353C23558DAD00840686 /* PresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565353623558DAD00840686 /* PresenterInterface.swift */; };
+		6565353D23558DAD00840686 /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565353723558DAD00840686 /* UIStoryboardExtension.swift */; };
+		6565353E23558DAD00840686 /* FormatterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565353823558DAD00840686 /* FormatterInterface.swift */; };
+		6565354023558DDE00840686 /* ReadhubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565353F23558DDE00840686 /* ReadhubService.swift */; };
+		656535422355930100840686 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656535412355930100840686 /* Constants.swift */; };
+		65653544235593ED00840686 /* ReadhubModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65653543235593ED00840686 /* ReadhubModels.swift */; };
+		6565354B235599E700840686 /* HomeInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65653546235599E700840686 /* HomeInterfaces.swift */; };
+		6565354C235599E700840686 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65653547235599E700840686 /* HomePresenter.swift */; };
+		6565354D235599E700840686 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65653548235599E700840686 /* HomeViewController.swift */; };
+		6565354E235599E700840686 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65653549235599E700840686 /* HomeInteractor.swift */; };
+		6565354F235599E700840686 /* HomeWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565354A235599E700840686 /* HomeWireframe.swift */; };
+		6565355123559A2F00840686 /* NvController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565355023559A2F00840686 /* NvController.swift */; };
+		6565355423559A8B00840686 /* Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565355323559A8B00840686 /* Initializers.swift */; };
+		6565355623559AC800840686 /* ThemeInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565355523559AC800840686 /* ThemeInitializer.swift */; };
+		9643E81759744F1973416021 /* Pods_readhubTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D63CF5F092BFB33FF77DE1 /* Pods_readhubTests.framework */; };
+		9A7B4447AAF584DAE05ABD41 /* Pods_readhub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB701931FEF173B6749EB3E /* Pods_readhub.framework */; };
+		C1C627494411D535161E018C /* Pods_readhub_readhubUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A2F65A400EEB2E149362DFF /* Pods_readhub_readhubUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,11 +53,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A2F65A400EEB2E149362DFF /* Pods_readhub_readhubUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_readhub_readhubUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DAEBDBFCC22A7AFFC9A9E8F /* Pods-readhub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readhub.debug.xcconfig"; path = "Target Support Files/Pods-readhub/Pods-readhub.debug.xcconfig"; sourceTree = "<group>"; };
+		5EB701931FEF173B6749EB3E /* Pods_readhub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_readhub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		656534F323557D3C00840686 /* readhub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = readhub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		656534F623557D3C00840686 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		656534F823557D3C00840686 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		656534FA23557D3C00840686 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		656534FD23557D3C00840686 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		656534FF23557D4300840686 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6565350223557D4300840686 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6565350423557D4300840686 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +68,29 @@
 		6565351423557D4400840686 /* readhubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = readhubUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6565351823557D4400840686 /* readhubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = readhubUITests.swift; sourceTree = "<group>"; };
 		6565351A23557D4400840686 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6565353323558DAD00840686 /* BaseWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWireframe.swift; sourceTree = "<group>"; };
+		6565353423558DAD00840686 /* ViewInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewInterface.swift; sourceTree = "<group>"; };
+		6565353523558DAD00840686 /* InteractorInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractorInterface.swift; sourceTree = "<group>"; };
+		6565353623558DAD00840686 /* PresenterInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenterInterface.swift; sourceTree = "<group>"; };
+		6565353723558DAD00840686 /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtension.swift; sourceTree = "<group>"; };
+		6565353823558DAD00840686 /* FormatterInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatterInterface.swift; sourceTree = "<group>"; };
+		6565353F23558DDE00840686 /* ReadhubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadhubService.swift; sourceTree = "<group>"; };
+		656535412355930100840686 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		65653543235593ED00840686 /* ReadhubModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadhubModels.swift; sourceTree = "<group>"; };
+		65653546235599E700840686 /* HomeInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInterfaces.swift; sourceTree = "<group>"; };
+		65653547235599E700840686 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		65653548235599E700840686 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		65653549235599E700840686 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		6565354A235599E700840686 /* HomeWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWireframe.swift; sourceTree = "<group>"; };
+		6565355023559A2F00840686 /* NvController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NvController.swift; sourceTree = "<group>"; };
+		6565355323559A8B00840686 /* Initializers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initializers.swift; sourceTree = "<group>"; };
+		6565355523559AC800840686 /* ThemeInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeInitializer.swift; sourceTree = "<group>"; };
+		76F72DC5BBB0718226D30AF9 /* Pods-readhub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readhub.release.xcconfig"; path = "Target Support Files/Pods-readhub/Pods-readhub.release.xcconfig"; sourceTree = "<group>"; };
+		78CA7588B4C06E7DD2C14C53 /* Pods-readhub-readhubUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readhub-readhubUITests.release.xcconfig"; path = "Target Support Files/Pods-readhub-readhubUITests/Pods-readhub-readhubUITests.release.xcconfig"; sourceTree = "<group>"; };
+		95D63CF5F092BFB33FF77DE1 /* Pods_readhubTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_readhubTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8E60CC0A243C3BD4F6A2C14 /* Pods-readhub-readhubUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readhub-readhubUITests.debug.xcconfig"; path = "Target Support Files/Pods-readhub-readhubUITests/Pods-readhub-readhubUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		CB3AB5E57729B456C5AF63C1 /* Pods-readhubTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readhubTests.debug.xcconfig"; path = "Target Support Files/Pods-readhubTests/Pods-readhubTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EBDDB56FCA490C8C2DE97666 /* Pods-readhubTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readhubTests.release.xcconfig"; path = "Target Support Files/Pods-readhubTests/Pods-readhubTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A7B4447AAF584DAE05ABD41 /* Pods_readhub.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9643E81759744F1973416021 /* Pods_readhubTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +114,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1C627494411D535161E018C /* Pods_readhub_readhubUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27CA428393CDFC13B61CC0BC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4DAEBDBFCC22A7AFFC9A9E8F /* Pods-readhub.debug.xcconfig */,
+				76F72DC5BBB0718226D30AF9 /* Pods-readhub.release.xcconfig */,
+				C8E60CC0A243C3BD4F6A2C14 /* Pods-readhub-readhubUITests.debug.xcconfig */,
+				78CA7588B4C06E7DD2C14C53 /* Pods-readhub-readhubUITests.release.xcconfig */,
+				CB3AB5E57729B456C5AF63C1 /* Pods-readhubTests.debug.xcconfig */,
+				EBDDB56FCA490C8C2DE97666 /* Pods-readhubTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		656534EA23557D3C00840686 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +141,8 @@
 				6565350C23557D4400840686 /* readhubTests */,
 				6565351723557D4400840686 /* readhubUITests */,
 				656534F423557D3C00840686 /* Products */,
+				27CA428393CDFC13B61CC0BC /* Pods */,
+				D45381066ACA32472703A641 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +159,11 @@
 		656534F523557D3C00840686 /* readhub */ = {
 			isa = PBXGroup;
 			children = (
-				656534F623557D3C00840686 /* AppDelegate.swift */,
-				656534F823557D3C00840686 /* SceneDelegate.swift */,
-				656534FA23557D3C00840686 /* ViewController.swift */,
-				656534FC23557D3C00840686 /* Main.storyboard */,
-				656534FF23557D4300840686 /* Assets.xcassets */,
-				6565350123557D4300840686 /* LaunchScreen.storyboard */,
-				6565350423557D4300840686 /* Info.plist */,
+				6565352623558CAD00840686 /* Application */,
+				6565352723558CBB00840686 /* Common */,
+				6565352823558CC200840686 /* Modules */,
+				6565352923558CCA00840686 /* Resources */,
+				6565352A23558CD500840686 /* SupportingFiles */,
 			);
 			path = readhub;
 			sourceTree = "<group>";
@@ -128,6 +186,153 @@
 			path = readhubUITests;
 			sourceTree = "<group>";
 		};
+		6565352623558CAD00840686 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				6565355223559A6B00840686 /* Initializers */,
+				656534F623557D3C00840686 /* AppDelegate.swift */,
+				656534F823557D3C00840686 /* SceneDelegate.swift */,
+				656535412355930100840686 /* Constants.swift */,
+				6565355023559A2F00840686 /* NvController.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		6565352723558CBB00840686 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				6565353223558D6600840686 /* API */,
+				6565353123558D6000840686 /* Base */,
+				6565353023558D5900840686 /* Components */,
+				6565352F23558D5100840686 /* Extensions */,
+				6565352E23558D4A00840686 /* Models */,
+				6565352D23558D4200840686 /* Services */,
+				6565352C23558D3A00840686 /* VIPER */,
+				6565352B23558D3100840686 /* Validators */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		6565352823558CC200840686 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				65653545235599D200840686 /* Home */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		6565352923558CCA00840686 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				656534FF23557D4300840686 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6565352A23558CD500840686 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				6565350423557D4300840686 /* Info.plist */,
+				6565350123557D4300840686 /* LaunchScreen.storyboard */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		6565352B23558D3100840686 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Validators;
+			sourceTree = "<group>";
+		};
+		6565352C23558D3A00840686 /* VIPER */ = {
+			isa = PBXGroup;
+			children = (
+				6565353323558DAD00840686 /* BaseWireframe.swift */,
+				6565353823558DAD00840686 /* FormatterInterface.swift */,
+				6565353523558DAD00840686 /* InteractorInterface.swift */,
+				6565353623558DAD00840686 /* PresenterInterface.swift */,
+				6565353723558DAD00840686 /* UIStoryboardExtension.swift */,
+				6565353423558DAD00840686 /* ViewInterface.swift */,
+			);
+			path = VIPER;
+			sourceTree = "<group>";
+		};
+		6565352D23558D4200840686 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6565353F23558DDE00840686 /* ReadhubService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		6565352E23558D4A00840686 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				65653543235593ED00840686 /* ReadhubModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6565352F23558D5100840686 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6565353023558D5900840686 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		6565353123558D6000840686 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		6565353223558D6600840686 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		65653545235599D200840686 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				65653546235599E700840686 /* HomeInterfaces.swift */,
+				65653547235599E700840686 /* HomePresenter.swift */,
+				65653548235599E700840686 /* HomeViewController.swift */,
+				65653549235599E700840686 /* HomeInteractor.swift */,
+				6565354A235599E700840686 /* HomeWireframe.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		6565355223559A6B00840686 /* Initializers */ = {
+			isa = PBXGroup;
+			children = (
+				6565355323559A8B00840686 /* Initializers.swift */,
+				6565355523559AC800840686 /* ThemeInitializer.swift */,
+			);
+			path = Initializers;
+			sourceTree = "<group>";
+		};
+		D45381066ACA32472703A641 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5EB701931FEF173B6749EB3E /* Pods_readhub.framework */,
+				3A2F65A400EEB2E149362DFF /* Pods_readhub_readhubUITests.framework */,
+				95D63CF5F092BFB33FF77DE1 /* Pods_readhubTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +340,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6565351D23557D4400840686 /* Build configuration list for PBXNativeTarget "readhub" */;
 			buildPhases = (
+				DABE23F250DBF2166A560101 /* [CP] Check Pods Manifest.lock */,
 				656534EF23557D3C00840686 /* Sources */,
 				656534F023557D3C00840686 /* Frameworks */,
 				656534F123557D3C00840686 /* Resources */,
+				29A6E8E72864BCD4FECE6439 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +359,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6565352023557D4400840686 /* Build configuration list for PBXNativeTarget "readhubTests" */;
 			buildPhases = (
+				48C6F6F78D9B7BB2552CC21E /* [CP] Check Pods Manifest.lock */,
 				6565350523557D4400840686 /* Sources */,
 				6565350623557D4400840686 /* Frameworks */,
 				6565350723557D4400840686 /* Resources */,
@@ -170,9 +378,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6565352323557D4400840686 /* Build configuration list for PBXNativeTarget "readhubUITests" */;
 			buildPhases = (
+				9E9776082739D60547EA46E5 /* [CP] Check Pods Manifest.lock */,
 				6565351023557D4400840686 /* Sources */,
 				6565351123557D4400840686 /* Frameworks */,
 				6565351223557D4400840686 /* Resources */,
+				99E3B2651E0223C5C61201FA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -234,7 +444,6 @@
 			files = (
 				6565350323557D4300840686 /* LaunchScreen.storyboard in Resources */,
 				6565350023557D4300840686 /* Assets.xcassets in Resources */,
-				656534FE23557D3C00840686 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,14 +463,133 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		29A6E8E72864BCD4FECE6439 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-readhub/Pods-readhub-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-readhub/Pods-readhub-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-readhub/Pods-readhub-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		48C6F6F78D9B7BB2552CC21E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-readhubTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99E3B2651E0223C5C61201FA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-readhub-readhubUITests/Pods-readhub-readhubUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-readhub-readhubUITests/Pods-readhub-readhubUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-readhub-readhubUITests/Pods-readhub-readhubUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E9776082739D60547EA46E5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-readhub-readhubUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DABE23F250DBF2166A560101 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-readhub-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		656534EF23557D3C00840686 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				656534FB23557D3C00840686 /* ViewController.swift in Sources */,
+				6565353E23558DAD00840686 /* FormatterInterface.swift in Sources */,
+				656535422355930100840686 /* Constants.swift in Sources */,
+				6565354F235599E700840686 /* HomeWireframe.swift in Sources */,
+				6565353B23558DAD00840686 /* InteractorInterface.swift in Sources */,
+				6565355623559AC800840686 /* ThemeInitializer.swift in Sources */,
+				6565354E235599E700840686 /* HomeInteractor.swift in Sources */,
+				6565353A23558DAD00840686 /* ViewInterface.swift in Sources */,
+				6565354023558DDE00840686 /* ReadhubService.swift in Sources */,
+				6565354D235599E700840686 /* HomeViewController.swift in Sources */,
+				6565355423559A8B00840686 /* Initializers.swift in Sources */,
+				6565353D23558DAD00840686 /* UIStoryboardExtension.swift in Sources */,
+				6565354C235599E700840686 /* HomePresenter.swift in Sources */,
+				6565355123559A2F00840686 /* NvController.swift in Sources */,
 				656534F723557D3C00840686 /* AppDelegate.swift in Sources */,
+				6565354B235599E700840686 /* HomeInterfaces.swift in Sources */,
 				656534F923557D3C00840686 /* SceneDelegate.swift in Sources */,
+				65653544235593ED00840686 /* ReadhubModels.swift in Sources */,
+				6565353923558DAD00840686 /* BaseWireframe.swift in Sources */,
+				6565353C23558DAD00840686 /* PresenterInterface.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +625,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		656534FC23557D3C00840686 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				656534FD23557D3C00840686 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		6565350123557D4300840686 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -432,11 +752,12 @@
 		};
 		6565351E23557D4400840686 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4DAEBDBFCC22A7AFFC9A9E8F /* Pods-readhub.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8J42PWK4BE;
-				INFOPLIST_FILE = readhub/Info.plist;
+				INFOPLIST_FILE = readhub/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -450,11 +771,12 @@
 		};
 		6565351F23557D4400840686 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76F72DC5BBB0718226D30AF9 /* Pods-readhub.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8J42PWK4BE;
-				INFOPLIST_FILE = readhub/Info.plist;
+				INFOPLIST_FILE = readhub/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -468,8 +790,9 @@
 		};
 		6565352123557D4400840686 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB3AB5E57729B456C5AF63C1 /* Pods-readhubTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8J42PWK4BE;
@@ -490,8 +813,9 @@
 		};
 		6565352223557D4400840686 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EBDDB56FCA490C8C2DE97666 /* Pods-readhubTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8J42PWK4BE;
@@ -512,8 +836,9 @@
 		};
 		6565352423557D4400840686 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8E60CC0A243C3BD4F6A2C14 /* Pods-readhub-readhubUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8J42PWK4BE;
 				INFOPLIST_FILE = readhubUITests/Info.plist;
@@ -532,8 +857,9 @@
 		};
 		6565352523557D4400840686 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78CA7588B4C06E7DD2C14C53 /* Pods-readhub-readhubUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8J42PWK4BE;
 				INFOPLIST_FILE = readhubUITests/Info.plist;
