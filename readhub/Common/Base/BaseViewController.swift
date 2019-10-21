@@ -12,7 +12,7 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         kLog("init: \(type(of: self))")
-
+        
         view.backgroundColor = kThemeWhiteColor
     }
 

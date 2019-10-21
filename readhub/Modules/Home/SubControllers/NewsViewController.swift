@@ -16,6 +16,7 @@ fileprivate struct Metrics {
 
 class NewsViewController: BaseHomeViewController {
     private var tableView: UITableView?
+    var refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +27,27 @@ class NewsViewController: BaseHomeViewController {
     }
 
     func setupLayout() {
-        tableView = UITableView(frame: view.frame, style: .plain)
+        
+        tableView = UITableView()
         tableView?.register(NewsTableViewCell.self, forCellReuseIdentifier: "NewsCell")
         view.addSubview(tableView!)
-
-        tableView!.rx.setDelegate(self).disposed(by: disposeBag)
+        
+        tableView?.snp.makeConstraints({ (make) in
+            make.edges.equalToSuperview()
+        })
+        
+        tableView?.estimatedRowHeight = Metrics.cellHeight
+        tableView?.rowHeight = UITableView.automaticDimension
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新数据")
+        tableView?.addSubview(refreshControl)
+        
+        refreshControl.rx.controlEvent(.valueChanged)
+            .subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                
+                self.presenter.getNewsList()
+            }).disposed(by: disposeBag)
 
         presenter.newsListObservable.observeOn(MainScheduler.instance)
             .map { $0.data ?? [] }
@@ -40,8 +57,3 @@ class NewsViewController: BaseHomeViewController {
     }
 }
 
-extension NewsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Metrics.cellHeight
-    }
-}

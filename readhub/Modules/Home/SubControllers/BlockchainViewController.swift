@@ -30,18 +30,13 @@ class BlockchainViewController: BaseHomeViewController {
         tableView?.register(NewsTableViewCell.self, forCellReuseIdentifier: "NewsCell")
         view.addSubview(tableView!)
 
-        tableView!.rx.setDelegate(self).disposed(by: disposeBag)
+        tableView?.estimatedRowHeight = Metrics.cellHeight
+        tableView?.rowHeight = UITableView.automaticDimension
 
         presenter.blockchainListObservable.observeOn(MainScheduler.instance)
             .map { $0.data ?? [] }
             .bind(to: tableView!.rx.items(cellIdentifier: "NewsCell", cellType: NewsTableViewCell.self)) { _, model, cell in
                 cell.setValueForCell(model: model)
             }.disposed(by: disposeBag)
-    }
-}
-
-extension BlockchainViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Metrics.cellHeight
     }
 }

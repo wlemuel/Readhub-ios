@@ -35,7 +35,7 @@ let kScreenH = UIScreen.main.bounds.height
 let kScreenW = UIScreen.main.bounds.width
 
 struct MetricsGlobal {
-    static let padding: CGFloat = 15.0
+    static let padding: CGFloat = 10.0
 }
 
 // MARK: - 颜色方法

@@ -11,12 +11,13 @@ import Then
 import UIKit
 
 fileprivate struct Metrics {
-    static let titleFontSize: CGFloat = 18.0
-    static let titleHeight: CGFloat = 57.0
+    static let lineSpacing: CGFloat = 8.0
     
+    static let titleFontSize: CGFloat = 19.0
+    static let titleHeight: CGFloat = 60.0
+
     static let summaryFontSize: CGFloat = 15.0
-    static let summaryHeight: CGFloat = 65.0
-    
+
     static let timeFontSize: CGFloat = 13.0
 }
 
@@ -36,19 +37,15 @@ class NewsTableViewCell: UITableViewCell {
     }
 
     func setupLayout() {
-        contentView.backgroundColor = kThemeGrayColor
-        
         titleLabel = UILabel().then {
             $0.textColor = kThemeBlackColor
             $0.numberOfLines = 2
             $0.font = UIFont.systemFont(ofSize: Metrics.titleFontSize)
         }
         addSubview(titleLabel)
-        
-        titleLabel.snp.makeConstraints({ (make) in
-            make.top.equalToSuperview()
-            make.left.right.equalToSuperview().inset(MetricsGlobal.padding)
-            make.height.equalTo(Metrics.titleHeight)
+
+        titleLabel.snp.makeConstraints({ make in
+            make.top.left.right.equalToSuperview().inset(MetricsGlobal.padding)
         })
 
         summaryLabel = UILabel().then {
@@ -57,10 +54,9 @@ class NewsTableViewCell: UITableViewCell {
             $0.font = UIFont.systemFont(ofSize: Metrics.summaryFontSize)
         }
         addSubview(summaryLabel)
-        summaryLabel.snp.makeConstraints({ (make) in
-            make.top.equalTo(titleLabel.snp.bottom)
+        summaryLabel.snp.makeConstraints({ make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(MetricsGlobal.padding)
             make.left.right.equalToSuperview().inset(MetricsGlobal.padding)
-            make.height.equalTo(Metrics.summaryHeight)
         })
 
         timeLabel = UILabel().then {
@@ -68,19 +64,25 @@ class NewsTableViewCell: UITableViewCell {
             $0.font = UIFont.systemFont(ofSize: Metrics.timeFontSize)
         }
         addSubview(timeLabel)
-        timeLabel.snp.makeConstraints({ (make) in
-            make.bottom.equalToSuperview()
-            make.top.equalTo(summaryLabel.snp.bottom)
+        timeLabel.snp.makeConstraints({ make in
+            make.bottom.equalToSuperview().inset(MetricsGlobal.padding)
+            make.top.equalTo(summaryLabel.snp.bottom).offset(MetricsGlobal.padding)
             make.left.right.equalToSuperview().inset(MetricsGlobal.padding)
-            make.width.equalToSuperview()
         })
-        
     }
 
     func setValueForCell(model: NewsItemModel) {
         titleLabel.text = model.title
         summaryLabel.text = model.summary
-        timeLabel.text = model.publishDate?.getFriendTime()
+
+        let siteName = model.siteName ?? ""
+        let authorName = model.authorName ?? ""
+        let timestamp = model.publishDate?.getFriendTime() ?? ""
+        let seperator = authorName == "" ? "" : "/"
+
+        timeLabel.text = "\(siteName) \(seperator) \(authorName)  \(timestamp)"
+        
+        summaryLabel.setLineSpacing(lineHeightMultiple: 1.2)
     }
 
     override func awakeFromNib() {

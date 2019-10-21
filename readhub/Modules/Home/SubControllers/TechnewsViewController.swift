@@ -29,8 +29,8 @@ class TechnewsViewController: BaseHomeViewController {
         tableView = UITableView(frame: view.frame, style: .plain)
         tableView?.register(NewsTableViewCell.self, forCellReuseIdentifier: "NewsCell")
         view.addSubview(tableView!)
-
-        tableView!.rx.setDelegate(self).disposed(by: disposeBag)
+        tableView?.estimatedRowHeight = Metrics.cellHeight
+        tableView?.rowHeight = UITableView.automaticDimension
 
         presenter.technewsListObservable.observeOn(MainScheduler.instance)
             .map { $0.data ?? [] }
@@ -40,8 +40,3 @@ class TechnewsViewController: BaseHomeViewController {
     }
 }
 
-extension TechnewsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Metrics.cellHeight
-    }
-}

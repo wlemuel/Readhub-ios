@@ -90,7 +90,7 @@ final class HomeViewController: BaseViewController {
         }
         titleView.addSubview(logoLabel)
         logoLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(MetricsGlobal.padding - 5)
+            make.left.equalToSuperview().offset(MetricsGlobal.padding)
             make.centerY.equalToSuperview()
         }
 
