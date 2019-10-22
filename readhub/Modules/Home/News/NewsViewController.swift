@@ -67,19 +67,6 @@ class NewsViewController: BaseViewController {
     }
 
     private func setupRx() {
-        // handle tableview events
-        tableView?.rx.modelSelected(NewsItemModel.self).subscribe(onNext: { [weak self] model in
-            guard let `self` = self else { return }
-
-            if let url = URL(string: model.mobileUrl ?? "") {
-                let safariConfig = SFSafariViewController.Configuration()
-                safariConfig.entersReaderIfAvailable = true
-
-                let safariVC = SFSafariViewController(url: url, configuration: safariConfig)
-                self.present(safariVC, animated: true, completion: nil)
-            }
-        }).disposed(by: disposeBag)
-
         // handle network data
         switch newsType {
         case .news:
@@ -111,6 +98,19 @@ class NewsViewController: BaseViewController {
 
                 self.lastCursor = item?.publishDate?.toUnixMillTime() ?? ""
             }).disposed(by: disposeBag)
+
+        // handle tableview events
+        tableView?.rx.modelSelected(NewsItemModel.self).subscribe(onNext: { [weak self] model in
+            guard let `self` = self else { return }
+
+            if let url = URL(string: model.mobileUrl ?? "") {
+                let safariConfig = SFSafariViewController.Configuration()
+                safariConfig.entersReaderIfAvailable = true
+
+                let safariVC = SFSafariViewController(url: url, configuration: safariConfig)
+                self.present(safariVC, animated: true, completion: nil)
+            }
+        }).disposed(by: disposeBag)
 
         tableView?.mj_header.rx.refreshing
             .startWith(())

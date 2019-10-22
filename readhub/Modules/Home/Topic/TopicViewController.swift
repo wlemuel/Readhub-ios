@@ -6,15 +6,26 @@
 //  Copyright © 2019 Steve Lemuel. All rights reserved.
 //
 
+import MJRefresh
 import NSObject_Rx
 import RxCocoa
 import RxSwift
 import UIKit
 
+fileprivate struct Metrics {
+    static let cellHeight: CGFloat = 150.0
+}
+
 class TopicViewController: BaseViewController {
     // MARK: Private properties -
+
     private var tableView: UITableView!
     private var presenter: HomePresenterInterface!
+
+    private var dataDriver: Driver<[TopicItemModel]>!
+    private var lastCursor: String = ""
+
+    private let disposeBag = DisposeBag()
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -30,31 +41,69 @@ class TopicViewController: BaseViewController {
         super.viewDidLoad()
 
         setupLayout()
+        setupRx()
     }
 
     private func setupLayout() {
         tableView = UITableView()
-        tableView?.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView?.register(TopicTableViewCell.self, forCellReuseIdentifier: "TopicCell")
         view.addSubview(tableView)
 
         tableView?.snp.makeConstraints({ make in
             make.edges.equalToSuperview()
         })
 
-//        let items = Observable.just([
-//            "文本输入框的用法",
-//            "开关按钮的用法",
-//            "进度条的用法",
-//            "文本标签的用法",
-//            ])
-//
-//        //设置单元格数据（其实就是对 cellForRowAt 的封装）
-//        items
-//            .bind(to: tableView.rx.items) { (tableView, row, element) in
-//                let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
-//                cell.textLabel?.text = "\(row)：\(element)"
-//                return cell
-//            }
-//        .disposed(by: rx.disposeBag)
+        tableView?.estimatedRowHeight = Metrics.cellHeight
+        tableView?.rowHeight = UITableView.automaticDimension
+
+        tableView?.mj_header = MJRefreshNormalHeader()
+        tableView?.mj_footer = MJRefreshBackNormalFooter()
+    }
+
+    private func setupRx() {
+        dataDriver = presenter.topics.asDriver()
+
+        dataDriver.drive(tableView!.rx.items(cellIdentifier: "TopicCell", cellType: TopicTableViewCell.self)) { _, model, cell in
+            cell.setValueForCell(model: model)
+        }.disposed(by: disposeBag)
+
+        dataDriver.map { _ in true }
+            .drive(tableView!.mj_header.rx.endRefreshing)
+            .disposed(by: disposeBag)
+
+        dataDriver.map { _ in true }
+            .drive(tableView!.mj_footer.rx.endRefreshing)
+            .disposed(by: disposeBag)
+
+        // update lastcursor
+        dataDriver.filter { $0.count > 0 }
+            .map { $0.last }
+            .asObservable()
+            .subscribe(onNext: { [weak self] item in
+                guard let `self` = self else { return }
+
+                self.lastCursor = String(item!.order!)
+            }).disposed(by: disposeBag)
+
+        // setup tableview
+        tableView?.mj_header.rx.refreshing
+            .startWith(())
+            .subscribe(onNext: { [weak self] in
+                guard let `self` = self else { return }
+
+                self.presenter.getTopicList(lastCursor: "", true)
+            }).disposed(by: disposeBag)
+
+        tableView?.mj_footer.rx.refreshing
+            .subscribe(onNext: { [weak self] in
+                guard let `self` = self else { return }
+
+                if self.lastCursor == "" {
+                    return
+                }
+
+                self.presenter.getTopicList(lastCursor: self.lastCursor, false)
+
+            }).disposed(by: disposeBag)
     }
 }
