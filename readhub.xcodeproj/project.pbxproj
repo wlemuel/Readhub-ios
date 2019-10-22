@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		650EE7222355F1B7008A90B3 /* String+GetSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650EE7212355F1B7008A90B3 /* String+GetSize.swift */; };
 		650EE7242355F216008A90B3 /* UIView+Corner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650EE7232355F216008A90B3 /* UIView+Corner.swift */; };
-		650EE73A2355F8B1008A90B3 /* BaseHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650EE7392355F8B1008A90B3 /* BaseHomeViewController.swift */; };
 		65275A042356C9D100994C0F /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65275A032356C9D100994C0F /* NewsTableViewCell.swift */; };
 		65275A0623570A5300994C0F /* String+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65275A0523570A5300994C0F /* String+Time.swift */; };
 		656534F723557D3C00840686 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656534F623557D3C00840686 /* AppDelegate.swift */; };
@@ -35,15 +34,13 @@
 		6565355423559A8B00840686 /* Initializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565355323559A8B00840686 /* Initializers.swift */; };
 		6565355623559AC800840686 /* ThemeInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565355523559AC800840686 /* ThemeInitializer.swift */; };
 		6565355A2355AA7800840686 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 656535592355AA7800840686 /* Launch Screen.storyboard */; };
+		658CE634235EA0D6000F04AC /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658CE633235EA0D6000F04AC /* NewsViewController.swift */; };
 		659694F42357EF6E00F169A1 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659694F32357EF6E00F169A1 /* UILabelExtension.swift */; };
 		65C34E752355B5AE005419D9 /* UIBarButtonItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C34E742355B5AE005419D9 /* UIBarButtonItemExtension.swift */; };
 		65C34E772355B5E1005419D9 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C34E762355B5E1005419D9 /* UIImageExtension.swift */; };
 		65F0047E2355E875005F7CC0 /* UIColor+HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F0047D2355E875005F7CC0 /* UIColor+HexColor.swift */; };
 		65F004802355E93C005F7CC0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F0047F2355E93C005F7CC0 /* BaseViewController.swift */; };
 		65F7031D2355E3F900D7EA19 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F7031C2355E3F900D7EA19 /* TopicViewController.swift */; };
-		65F7031F2355E40A00D7EA19 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F7031E2355E40A00D7EA19 /* NewsViewController.swift */; };
-		65F703212355E41800D7EA19 /* TechnewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F703202355E41800D7EA19 /* TechnewsViewController.swift */; };
-		65F703232355E42800D7EA19 /* BlockchainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F703222355E42800D7EA19 /* BlockchainViewController.swift */; };
 		9643E81759744F1973416021 /* Pods_readhubTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D63CF5F092BFB33FF77DE1 /* Pods_readhubTests.framework */; };
 		9A7B4447AAF584DAE05ABD41 /* Pods_readhub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB701931FEF173B6749EB3E /* Pods_readhub.framework */; };
 		C1C627494411D535161E018C /* Pods_readhub_readhubUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A2F65A400EEB2E149362DFF /* Pods_readhub_readhubUITests.framework */; };
@@ -72,7 +69,6 @@
 		5EB701931FEF173B6749EB3E /* Pods_readhub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_readhub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		650EE7212355F1B7008A90B3 /* String+GetSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+GetSize.swift"; sourceTree = "<group>"; };
 		650EE7232355F216008A90B3 /* UIView+Corner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Corner.swift"; sourceTree = "<group>"; };
-		650EE7392355F8B1008A90B3 /* BaseHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHomeViewController.swift; sourceTree = "<group>"; };
 		65275A032356C9D100994C0F /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		65275A0523570A5300994C0F /* String+Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Time.swift"; sourceTree = "<group>"; };
 		656534F323557D3C00840686 /* Readhub+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Readhub+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,15 +100,13 @@
 		6565355323559A8B00840686 /* Initializers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initializers.swift; sourceTree = "<group>"; };
 		6565355523559AC800840686 /* ThemeInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeInitializer.swift; sourceTree = "<group>"; };
 		656535592355AA7800840686 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		658CE633235EA0D6000F04AC /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		659694F32357EF6E00F169A1 /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		65C34E742355B5AE005419D9 /* UIBarButtonItemExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtension.swift; sourceTree = "<group>"; };
 		65C34E762355B5E1005419D9 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		65F0047D2355E875005F7CC0 /* UIColor+HexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HexColor.swift"; sourceTree = "<group>"; };
 		65F0047F2355E93C005F7CC0 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		65F7031C2355E3F900D7EA19 /* TopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
-		65F7031E2355E40A00D7EA19 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
-		65F703202355E41800D7EA19 /* TechnewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnewsViewController.swift; sourceTree = "<group>"; };
-		65F703222355E42800D7EA19 /* BlockchainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainViewController.swift; sourceTree = "<group>"; };
 		76F72DC5BBB0718226D30AF9 /* Pods-readhub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readhub.release.xcconfig"; path = "Target Support Files/Pods-readhub/Pods-readhub.release.xcconfig"; sourceTree = "<group>"; };
 		78CA7588B4C06E7DD2C14C53 /* Pods-readhub-readhubUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readhub-readhubUITests.release.xcconfig"; path = "Target Support Files/Pods-readhub-readhubUITests/Pods-readhub-readhubUITests.release.xcconfig"; sourceTree = "<group>"; };
 		95D63CF5F092BFB33FF77DE1 /* Pods_readhubTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_readhubTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -381,10 +375,7 @@
 			isa = PBXGroup;
 			children = (
 				65F7031C2355E3F900D7EA19 /* TopicViewController.swift */,
-				65F7031E2355E40A00D7EA19 /* NewsViewController.swift */,
-				65F703202355E41800D7EA19 /* TechnewsViewController.swift */,
-				65F703222355E42800D7EA19 /* BlockchainViewController.swift */,
-				650EE7392355F8B1008A90B3 /* BaseHomeViewController.swift */,
+				658CE633235EA0D6000F04AC /* NewsViewController.swift */,
 			);
 			path = SubControllers;
 			sourceTree = "<group>";
@@ -639,20 +630,18 @@
 			files = (
 				65C34E752355B5AE005419D9 /* UIBarButtonItemExtension.swift in Sources */,
 				6565353E23558DAD00840686 /* FormatterInterface.swift in Sources */,
-				65F7031F2355E40A00D7EA19 /* NewsViewController.swift in Sources */,
 				65C34E772355B5E1005419D9 /* UIImageExtension.swift in Sources */,
 				65275A042356C9D100994C0F /* NewsTableViewCell.swift in Sources */,
 				656535422355930100840686 /* Constants.swift in Sources */,
 				65F004802355E93C005F7CC0 /* BaseViewController.swift in Sources */,
 				6565354F235599E700840686 /* HomeWireframe.swift in Sources */,
 				6565353B23558DAD00840686 /* InteractorInterface.swift in Sources */,
-				65F703212355E41800D7EA19 /* TechnewsViewController.swift in Sources */,
 				6565355623559AC800840686 /* ThemeInitializer.swift in Sources */,
 				6565354E235599E700840686 /* HomeInteractor.swift in Sources */,
 				6565353A23558DAD00840686 /* ViewInterface.swift in Sources */,
 				6565354023558DDE00840686 /* ReadhubService.swift in Sources */,
 				65F7031D2355E3F900D7EA19 /* TopicViewController.swift in Sources */,
-				650EE73A2355F8B1008A90B3 /* BaseHomeViewController.swift in Sources */,
+				658CE634235EA0D6000F04AC /* NewsViewController.swift in Sources */,
 				650EE7242355F216008A90B3 /* UIView+Corner.swift in Sources */,
 				6565354D235599E700840686 /* HomeViewController.swift in Sources */,
 				6565355423559A8B00840686 /* Initializers.swift in Sources */,
@@ -664,7 +653,6 @@
 				65F0047E2355E875005F7CC0 /* UIColor+HexColor.swift in Sources */,
 				6565354B235599E700840686 /* HomeInterfaces.swift in Sources */,
 				656534F923557D3C00840686 /* SceneDelegate.swift in Sources */,
-				65F703232355E42800D7EA19 /* BlockchainViewController.swift in Sources */,
 				65653544235593ED00840686 /* ReadhubModels.swift in Sources */,
 				65275A0623570A5300994C0F /* String+Time.swift in Sources */,
 				6565353923558DAD00840686 /* BaseWireframe.swift in Sources */,

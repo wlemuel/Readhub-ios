@@ -149,15 +149,15 @@ extension HomeViewController: TYTabPagerControllerDelegate, TYTabPagerController
             VC.view.backgroundColor = kThemeGrayColor
             return VC
         } else if index == 1 {
-            let VC = NewsViewController(presenter: presenter)
+            let VC = NewsViewController(newsType: .news, presenter: presenter)
             VC.view.backgroundColor = kThemeGrayColor
             return VC
         } else if index == 2 {
-            let VC = TechnewsViewController(presenter: presenter)
+            let VC = NewsViewController(newsType: .technews, presenter: presenter)
             VC.view.backgroundColor = kThemeGrayColor
             return VC
         } else if index == 3 {
-            let VC = BlockchainViewController(presenter: presenter)
+            let VC = NewsViewController(newsType: .blockchain, presenter: presenter)
             VC.view.backgroundColor = kThemeGrayColor
             return VC
         }

@@ -60,7 +60,7 @@ class NewsTableViewCell: UITableViewCell {
         })
 
         timeLabel = UILabel().then {
-            $0.textColor = kThemeSecondColor
+            $0.textColor = kThemeHintColor
             $0.font = UIFont.systemFont(ofSize: Metrics.timeFontSize)
         }
         addSubview(timeLabel)
