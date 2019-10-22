@@ -52,10 +52,9 @@ let kThemeWhiteColor = UIColor.hexColor(0xFFFFFF)
 let kThemeSeperatorColor = UIColor.hexColor(0xF8F8F8)
 let kThemeGrayColor = UIColor.hexColor(0xFAFAFA)
 let kThemeHintColor = UIColor.hexColor(0x9A9A9A)
-let kThemeLogoColor = UIColor.hexColor(0x156197)
 let kThemeTabColor = UIColor.hexColor(0x757575)
 let kThemeBlackColor = UIColor.hexColor(0x000000)
-let kThemeMainColor = UIColor.hexColor(0x206A9C)
+let kThemeMainColor = UIColor.hexColor(0x0080FF)
 let kThemeSecondColor = UIColor.hexColor(0x737373)
 
 // MARK: - 自定义打印方法

@@ -86,7 +86,7 @@ final class HomeViewController: BaseViewController {
 
         let logoLabel = UILabel().then {
             $0.text = "Readhub+"
-            $0.textColor = kThemeLogoColor
+            $0.textColor = kThemeMainColor
             $0.font = UIFont.systemFont(ofSize: 25)
         }
         titleView.addSubview(logoLabel)
