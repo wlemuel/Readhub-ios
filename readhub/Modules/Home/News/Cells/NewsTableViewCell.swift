@@ -36,7 +36,7 @@ class NewsTableViewCell: UITableViewCell {
         setupLayout()
     }
 
-    func setupLayout() {
+    private func setupLayout() {
         titleLabel = UILabel().then {
             $0.textColor = kThemeBlackColor
             $0.numberOfLines = 2
@@ -82,7 +82,7 @@ class NewsTableViewCell: UITableViewCell {
 
         timeLabel.text = "\(siteName) \(seperator) \(authorName)  \(timestamp)"
         
-        summaryLabel.setLineSpacing(lineHeightMultiple: 1.2)
+//        summaryLabel.setLineSpacing(lineHeightMultiple: 1.2)
     }
 
     override func awakeFromNib() {

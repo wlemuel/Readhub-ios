@@ -107,6 +107,8 @@ final class HomeViewController: BaseViewController {
     }
 
     private func setupPageController() {
+        
+        
         addChild(pageVC)
         view.addSubview(pageVC.view)
 
