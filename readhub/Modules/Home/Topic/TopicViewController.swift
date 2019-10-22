@@ -28,7 +28,7 @@ class TopicViewController: BaseViewController {
     private let disposeBag = DisposeBag()
 
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
     }
 
     init(presenter: HomePresenterInterface) {

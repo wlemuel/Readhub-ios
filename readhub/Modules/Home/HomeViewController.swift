@@ -19,6 +19,9 @@ fileprivate struct Metric {
     static let pagerBarFontSize = UIFont.systemFont(ofSize: 18.0)
     static let pagerBarHeight: CGFloat = 40.0
     static let titleHeight: CGFloat = 50.0
+
+    static let titleIconSize: CGFloat = 25.0
+    static let titleIconMargin: CGFloat = 15.0
 }
 
 final class HomeViewController: BaseViewController {
@@ -31,6 +34,8 @@ final class HomeViewController: BaseViewController {
     private let disposeBag = DisposeBag()
 
     private var titleView: UIView!
+    private var settingBtn: UIImageView!
+    private var bookmarkBtn: UIButton!
 
     private let titles: [String] = ["热门话题", "科技动态", "开发者", "区块链"]
     private let pageVC = TYTabPagerController().then {
@@ -46,8 +51,6 @@ final class HomeViewController: BaseViewController {
         $0.tabBar.layout.selectedTextFont = Metric.pagerBarFontSize
         $0.tabBarHeight = Metric.pagerBarHeight
     }
-
-    private var vcs: [UIViewController] = []
 
     // MARK: - Lifecycle -
 
@@ -105,11 +108,17 @@ final class HomeViewController: BaseViewController {
             make.height.equalTo(2)
             make.left.right.equalToSuperview()
         }
+
+        settingBtn = UIImageView(image: UIImage(named: "icon_settings"))
+        titleView.addSubview(settingBtn)
+        settingBtn.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.width.height.equalTo(Metric.titleIconSize)
+            make.right.equalToSuperview().offset(0 - Metric.titleIconMargin)
+        }
     }
 
     private func setupPageController() {
-        
-        
         addChild(pageVC)
         view.addSubview(pageVC.view)
 
@@ -125,6 +134,9 @@ final class HomeViewController: BaseViewController {
 
         // 设置起始页
         pageVC.pagerController.scrollToController(at: 0, animate: false)
+    }
+
+    private func setRx() {
     }
 }
 
