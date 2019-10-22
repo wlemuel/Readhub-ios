@@ -16,4 +16,11 @@ extension String {
         let date = str.toDate("yyyy-MM-dd'T'HH:mm:ss.SSSZ")?.date
         return (date?.toRelative(style: RelativeFormatter.defaultStyle(), locale: Locales.chinese))!
     }
+    
+    func toUnixMillTime() -> String {
+        let str = self
+        
+        let date = str.toDate("yyyy-MM-dd'T'HH:mm:ss.SSSZ")?.date
+        return String(Int(date!.timeIntervalSince1970) * 1000)
+    }
 }

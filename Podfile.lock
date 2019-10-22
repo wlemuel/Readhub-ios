@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.0.0-rc.2)
+  - MJRefresh (3.2.0)
   - Moya/Core (14.0.0-beta.4):
     - Alamofire (= 5.0.0-rc.2)
   - Moya/RxSwift (14.0.0-beta.4):
@@ -27,6 +28,7 @@ PODS:
   - TYPagerController (2.1.2)
 
 DEPENDENCIES:
+  - MJRefresh (~> 3.2)
   - Moya/RxSwift (~> 14.0.0-alpha.2)
   - "NSObject+Rx"
   - Reusable (~> 4.1)
@@ -41,6 +43,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - MJRefresh
     - Moya
     - "NSObject+Rx"
     - Reusable
@@ -55,6 +58,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
+  MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
   Moya: 53fa45a72929809e0b8bba44a0a53d8d0827bcfe
   "NSObject+Rx": 2eb2cf51fd1c554118449a7fbc36e4cd620b9e94
   Reusable: 82be188f29d96dc5eff0db7b2393bcc08d2cdd5b
@@ -67,6 +71,6 @@ SPEC CHECKSUMS:
   Then: 90cd104fd951cec1980a03f57704ad8f784d4d79
   TYPagerController: 262556ecef99986d26ed77fb1288a198ed42f4af
 
-PODFILE CHECKSUM: d102e5e191a3c978d8363d25513745ed62637f04
+PODFILE CHECKSUM: 3c6cae1e87876f0957ea1453dd8b2eadb8725e64
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4

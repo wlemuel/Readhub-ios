@@ -14,6 +14,7 @@ target 'readhub' do
   pod 'TYPagerController', '~> 2.1.2'
   pod 'NSObject+Rx'
   pod 'SwiftDate', '~> 6.1'
+  pod 'MJRefresh', '~> 3.2'
 
   target 'readhubTests' do
     inherit! :search_paths

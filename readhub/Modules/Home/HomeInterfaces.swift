@@ -31,25 +31,25 @@ protocol HomePresenterInterface: PresenterInterface {
 
     // MARK: Observables -
 
-    var topicListObservable: Observable<TopicListModel> { get }
-    var newsListObservable: Observable<NewsListModel> { get }
-    var technewsListObservable: Observable<TechnewsListModel> { get }
-    var blockchainListObservable: Observable<BlockchainListModel> { get }
+    var topics: BehaviorRelay<[TopicItemModel]> { get }
+    var news: BehaviorRelay<[NewsItemModel]> { get }
+    var technews: BehaviorRelay<[NewsItemModel]> { get }
+    var blockchains: BehaviorRelay<[NewsItemModel]> { get }
 
     // MARK: Functions -
 
-    func getTopicList()
-    func getNewsList()
-    func getTechnewsList()
-    func getBlockchainList()
+    func getTopicList(lastCursor: String, _ refresh: Bool)
+    func getNewsList(lastCursor: String, _ refresh: Bool)
+    func getTechnewsList(lastCursor: String, _ refresh: Bool)
+    func getBlockchainList(lastCursor: String, _ refresh: Bool)
 }
 
 protocol HomeInteractorInterface: InteractorInterface {
     func getTopicList(lastCursor: String, pageSize: Int) -> Single<TopicListModel>
 
     func getNewsList(lastCursor: String, pageSize: Int) -> Single<NewsListModel>
-    
+
     func getTechnewsList(lastCursor: String, pageSize: Int) -> Single<TechnewsListModel>
-    
+
     func getBlockchainList(lastCursor: String, pageSize: Int) -> Single<BlockchainListModel>
 }
