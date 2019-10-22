@@ -10,6 +10,7 @@ import Foundation
 import MJRefresh
 import RxCocoa
 import RxSwift
+import SafariServices
 
 enum NewsType {
     case news
@@ -64,8 +65,22 @@ class NewsViewController: BaseViewController {
         tableView?.mj_header = MJRefreshNormalHeader()
         tableView?.mj_footer = MJRefreshBackNormalFooter()
     }
-    
+
     private func setupRx() {
+        // handle tableview events
+        tableView?.rx.modelSelected(NewsItemModel.self).subscribe(onNext: { [weak self] model in
+            guard let `self` = self else { return }
+
+            if let url = URL(string: model.mobileUrl ?? "") {
+                let safariConfig = SFSafariViewController.Configuration()
+                safariConfig.entersReaderIfAvailable = true
+
+                let safariVC = SFSafariViewController(url: url, configuration: safariConfig)
+                self.present(safariVC, animated: true, completion: nil)
+            }
+        }).disposed(by: disposeBag)
+
+        // handle network data
         switch newsType {
         case .news:
             dataDriver = presenter.news.asDriver()
@@ -86,14 +101,14 @@ class NewsViewController: BaseViewController {
         dataDriver.map { _ in true }
             .drive(tableView!.mj_footer.rx.endRefreshing)
             .disposed(by: disposeBag)
-        
+
         // update lastcursor
         dataDriver.filter { $0.count > 0 }
             .map { $0.last }
             .asObservable()
             .subscribe(onNext: { [weak self] item in
                 guard let `self` = self else { return }
-                
+
                 self.lastCursor = item?.publishDate?.toUnixMillTime() ?? ""
             }).disposed(by: disposeBag)
 
@@ -111,15 +126,15 @@ class NewsViewController: BaseViewController {
                     self.presenter.getBlockchainList(lastCursor: "", true)
                 }
             }).disposed(by: disposeBag)
-        
+
         tableView?.mj_footer.rx.refreshing
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
-                
+
                 if self.lastCursor == "" {
                     return
                 }
-                
+
                 switch self.newsType {
                 case .news:
                     self.presenter.getNewsList(lastCursor: self.lastCursor, false)

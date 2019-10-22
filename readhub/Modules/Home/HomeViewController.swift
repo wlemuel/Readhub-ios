@@ -35,6 +35,7 @@ final class HomeViewController: BaseViewController {
     private let titles: [String] = ["热门话题", "科技动态", "开发者", "区块链"]
     private let pageVC = TYTabPagerController().then {
         $0.pagerController.scrollView?.backgroundColor = kThemeMainColor
+        $0.pagerController.layout.prefetchItemCount = 3
         $0.tabBar.layout.cellWidth = kScreenW * 0.25
         $0.tabBar.layout.progressColor = kThemeMainColor
         $0.tabBar.layout.selectedTextColor = kThemeMainColor

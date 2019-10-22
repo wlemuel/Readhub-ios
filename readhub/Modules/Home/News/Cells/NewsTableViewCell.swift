@@ -37,6 +37,8 @@ class NewsTableViewCell: UITableViewCell {
     }
 
     private func setupLayout() {
+        contentView.backgroundColor = kThemeGrayColor
+        
         titleLabel = UILabel().then {
             $0.textColor = kThemeBlackColor
             $0.numberOfLines = 2
