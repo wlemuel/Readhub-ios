@@ -27,6 +27,8 @@ struct TopicItemModel: Codable {
     let timeline: String?
     let order: Int?
     let hasInstantView: Bool?
+    
+    var expanded: Bool = false
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -99,27 +101,26 @@ struct TopicItemNewsModel: Codable {
 }
 
 struct TopicItemEventModel: Codable {
-    let id : Int?
-    let topicId : String?
-    let eventType : Int?
-    let entityId : String?
-    let entityType : String?
-    let entityName : String?
-    let state : Int?
-    let createdAt : String?
-    let updatedAt : String?
+    let id: Int?
+    let topicId: String?
+    let eventType: Int?
+    let entityId: String?
+    let entityType: String?
+    let entityName: String?
+    let state: Int?
+    let createdAt: String?
+    let updatedAt: String?
 
     enum CodingKeys: String, CodingKey {
-
-        case id = "id"
-        case topicId = "topicId"
-        case eventType = "eventType"
-        case entityId = "entityId"
-        case entityType = "entityType"
-        case entityName = "entityName"
-        case state = "state"
-        case createdAt = "createdAt"
-        case updatedAt = "updatedAt"
+        case id
+        case topicId
+        case eventType
+        case entityId
+        case entityType
+        case entityName
+        case state
+        case createdAt
+        case updatedAt
     }
 
     init(from decoder: Decoder) throws {

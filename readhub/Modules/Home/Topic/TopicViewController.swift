@@ -13,7 +13,7 @@ import RxSwift
 import UIKit
 
 fileprivate struct Metrics {
-    static let cellHeight: CGFloat = 150.0
+    static let cellHeight: CGFloat = 300.0
 }
 
 class TopicViewController: BaseViewController {
@@ -26,6 +26,8 @@ class TopicViewController: BaseViewController {
     private var lastCursor: String = ""
 
     private let disposeBag = DisposeBag()
+
+    private let cellId = "TopicCell"
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -46,7 +48,7 @@ class TopicViewController: BaseViewController {
 
     private func setupLayout() {
         tableView = UITableView()
-        tableView?.register(TopicTableViewCell.self, forCellReuseIdentifier: "TopicCell")
+        tableView?.register(TopicTableViewCell.self, forCellReuseIdentifier: cellId)
         view.addSubview(tableView)
 
         tableView?.snp.makeConstraints({ make in
@@ -63,7 +65,7 @@ class TopicViewController: BaseViewController {
     private func setupRx() {
         dataDriver = presenter.topics.asDriver()
 
-        dataDriver.drive(tableView!.rx.items(cellIdentifier: "TopicCell", cellType: TopicTableViewCell.self)) { _, model, cell in
+        dataDriver.drive(tableView!.rx.items(cellIdentifier: cellId, cellType: TopicTableViewCell.self)) { _, model, cell in
             cell.setValueForCell(model: model)
         }.disposed(by: disposeBag)
 
@@ -99,10 +101,19 @@ class TopicViewController: BaseViewController {
                 guard let `self` = self else { return }
 
                 if self.lastCursor == "" {
+                    self.tableView?.mj_footer.endRefreshing()
                     return
                 }
 
                 self.presenter.getTopicList(lastCursor: self.lastCursor, false)
+
+            }).disposed(by: disposeBag)
+
+        tableView?.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let `self` = self else { return }
+
+                self.presenter.toggleTopicCellAt(index: indexPath.row)
 
             }).disposed(by: disposeBag)
     }

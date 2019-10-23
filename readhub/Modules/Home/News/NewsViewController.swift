@@ -30,7 +30,8 @@ class NewsViewController: BaseViewController {
     private var dataDriver: Driver<[NewsItemModel]>!
     private var lastCursor: String = ""
 
-    var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
+    private let cellId = "NewsCell"
 
     init(newsType: NewsType, presenter: HomePresenterInterface) {
         self.presenter = presenter
@@ -52,7 +53,7 @@ class NewsViewController: BaseViewController {
 
     private func setupLayout() {
         tableView = UITableView()
-        tableView?.register(NewsTableViewCell.self, forCellReuseIdentifier: "NewsCell")
+        tableView?.register(NewsTableViewCell.self, forCellReuseIdentifier: cellId)
         view.addSubview(tableView!)
 
         tableView?.snp.makeConstraints({ make in
@@ -77,7 +78,7 @@ class NewsViewController: BaseViewController {
             dataDriver = presenter.blockchains.asDriver()
         }
 
-        dataDriver.drive(tableView!.rx.items(cellIdentifier: "NewsCell", cellType: NewsTableViewCell.self)) { _, model, cell in
+        dataDriver.drive(tableView!.rx.items(cellIdentifier: cellId, cellType: NewsTableViewCell.self)) { _, model, cell in
             cell.setValueForCell(model: model)
         }.disposed(by: disposeBag)
 

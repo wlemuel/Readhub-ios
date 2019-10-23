@@ -114,7 +114,7 @@ final class HomeViewController: BaseViewController {
         settingBtn.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.width.height.equalTo(Metric.titleIconSize)
-            make.right.equalToSuperview().offset(0 - Metric.titleIconMargin)
+            make.right.equalToSuperview().inset(Metric.titleIconMargin)
         }
     }
 

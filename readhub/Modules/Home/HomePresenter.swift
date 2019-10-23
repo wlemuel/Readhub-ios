@@ -61,6 +61,18 @@ extension HomePresenter: HomePresenterInterface {
             }.disposed(by: disposeBag)
     }
 
+    func toggleTopicCellAt(index: Int) {
+        var topicList = topics.value + []
+
+        if index >= topicList.count {
+            return
+        }
+
+        topicList[index].expanded = !topicList[index].expanded
+
+        topics.accept(topicList)
+    }
+
     func getNewsList(lastCursor: String, _ refresh: Bool) {
         interactor.getNewsList(lastCursor: lastCursor, pageSize: 20)
             .subscribe(onSuccess: { [weak self] newsList in

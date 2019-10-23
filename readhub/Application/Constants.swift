@@ -54,6 +54,7 @@ let kThemeGrayColor = UIColor.hexColor(0xFAFAFA)
 let kThemeHintColor = UIColor.hexColor(0x9A9A9A)
 let kThemeTabColor = UIColor.hexColor(0x757575)
 let kThemeBlackColor = UIColor.hexColor(0x000000)
+let kThemeBlackSecondaryColor = UIColor.hexColor(0x333333)
 let kThemeMainColor = UIColor.hexColor(0x0080FF)
 let kThemeSecondColor = UIColor.hexColor(0x737373)
 

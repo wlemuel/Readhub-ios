@@ -42,6 +42,8 @@ protocol HomePresenterInterface: PresenterInterface {
     func getNewsList(lastCursor: String, _ refresh: Bool)
     func getTechnewsList(lastCursor: String, _ refresh: Bool)
     func getBlockchainList(lastCursor: String, _ refresh: Bool)
+    
+    func toggleTopicCellAt(index: Int)
 }
 
 protocol HomeInteractorInterface: InteractorInterface {
