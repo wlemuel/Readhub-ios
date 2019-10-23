@@ -110,7 +110,7 @@ class TopicTableViewCell: UITableViewCell {
         addSubview(goBtn)
         goBtn.snp.makeConstraints { make in
             make.top.equalTo(newsTableView.snp.bottom)
-            make.height.equalTo(1)
+            make.height.equalTo(1).priority(.high)
             make.width.bottom.equalToSuperview()
         }
     }
@@ -167,7 +167,7 @@ class TopicTableViewCell: UITableViewCell {
         }
 
         goBtn.snp.updateConstraints { make in
-            make.height.equalTo(model.expanded ? Metrics.goButtonHeight : 1)
+            make.height.equalTo(model.expanded ? Metrics.goButtonHeight : 1).priority(.high)
         }
     }
 }

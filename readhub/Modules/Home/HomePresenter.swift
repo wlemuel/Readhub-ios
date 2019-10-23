@@ -46,7 +46,7 @@ extension HomePresenter: HomePresenterInterface {
     }
 
     func getTopicList(lastCursor: String, _ refresh: Bool) {
-        interactor.getTopicList(lastCursor: lastCursor, pageSize: 10)
+        interactor.getTopicList(lastCursor: lastCursor, pageSize: 20)
             .subscribe(onSuccess: { [weak self] topicList in
                 guard let `self` = self else { return }
 

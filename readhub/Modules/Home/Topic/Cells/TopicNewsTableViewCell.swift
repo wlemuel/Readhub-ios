@@ -48,7 +48,7 @@ class TopicNewsTableViewCell: UITableViewCell {
         addSubview(dotLabel)
         dotLabel.snp.makeConstraints { make in
             make.top.left.equalToSuperview()
-            make.width.equalTo(Metrics.dotWidth).priority(.low)
+            make.width.equalTo(Metrics.dotWidth).priority(.medium)
         }
 
         titleLabel = UILabel().then {
