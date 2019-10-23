@@ -138,7 +138,7 @@ class TopicTableViewCell: UITableViewCell {
                     safariConfig.entersReaderIfAvailable = true
 
                     let safariVC = SFSafariViewController(url: url, configuration: safariConfig)
-                    
+
                     topicViewController.present(safariVC, animated: true, completion: nil)
                 }
             }).disposed(by: rx.disposeBag)
@@ -167,13 +167,5 @@ class TopicTableViewCell: UITableViewCell {
         goBtn.snp.updateConstraints { make in
             make.height.equalTo(model.expanded ? Metrics.goButtonHeight : 1)
         }
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
 }
