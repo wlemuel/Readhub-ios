@@ -43,7 +43,7 @@ class TopicNewsTableViewCell: UITableViewCell {
         let dotLabel = UILabel().then {
             $0.textColor = kThemeHintColor
             $0.font = UIFont.systemFont(ofSize: Metrics.titleFontSize)
-            $0.text = "-  "
+            $0.text = "◦  "
         }
         addSubview(dotLabel)
         dotLabel.snp.makeConstraints { make in

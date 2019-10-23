@@ -21,11 +21,11 @@ fileprivate struct Metrics {
     static let titleFontSize: CGFloat = 19.0
     static let titleHeight: CGFloat = 60.0
 
-    static let summaryFontSize: CGFloat = 15.0
+    static let summaryFontSize: CGFloat = 16.0
 
     static let timeFontSize: CGFloat = 13.0
 
-    static let goButtonHeight: CGFloat = 40.0
+    static let goButtonHeight: CGFloat = 50.0
 
     static let cellHeight: CGFloat = 50.0
 }
@@ -147,12 +147,14 @@ class TopicTableViewCell: UITableViewCell {
     func setValueForCell(model: TopicItemModel) {
         titleLabel.text = model.title
         summaryLabel.text = model.expanded ? model.summary : ""
+        
+        summaryLabel.setLineSpacing(lineHeightMultiple: 1.3)
 
         let timestamp = model.publishDate?.getFriendTime() ?? ""
 
         timeLabel.text = "\(timestamp)"
 
-        goBtn.setTitle(model.expanded ? "查看主题 >" : "", for: .normal)
+        goBtn.setTitle(model.expanded ? "查看主题 ▷" : "", for: .normal)
 
         let newsList = model.newsArray ?? []
 
