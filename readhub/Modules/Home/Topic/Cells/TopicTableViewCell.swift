@@ -39,6 +39,8 @@ class TopicTableViewCell: UITableViewCell {
     var newsTableView: UITableView!
     var goBtn: UIButton!
 
+    private var topicId: String = ""
+
     // MARK: Private properties -
 
     private let news = BehaviorRelay<[TopicItemNewsModel]>(value: [])
@@ -120,7 +122,18 @@ class TopicTableViewCell: UITableViewCell {
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
 
-                print("click \(String(describing: self.titleLabel.text))")
+                if self.topicId == "" {
+                    return
+                }
+
+                if let url = URL(string: "https://readhub.cn/topic/\(self.topicId)"), let topicViewController = self.parentViewController as? TopicViewController {
+                    let safariConfig = SFSafariViewController.Configuration()
+                    safariConfig.entersReaderIfAvailable = false
+
+                    let safariVC = SFSafariViewController(url: url, configuration: safariConfig)
+
+                    topicViewController.present(safariVC, animated: true, completion: nil)
+                }
 
             }).disposed(by: rx.disposeBag)
 
@@ -145,9 +158,11 @@ class TopicTableViewCell: UITableViewCell {
     }
 
     func setValueForCell(model: TopicItemModel) {
+        topicId = model.id ?? ""
+
         titleLabel.text = model.title
         summaryLabel.text = model.expanded ? model.summary : ""
-        
+
         summaryLabel.setLineSpacing(lineHeightMultiple: 1.3)
 
         let timestamp = model.publishDate?.getFriendTime() ?? ""
