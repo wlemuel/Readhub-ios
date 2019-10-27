@@ -12,15 +12,25 @@ import SwiftDate
 extension String {
     func getFriendTime() -> String {
         let str = self
-        
+
         let date = str.toDate("yyyy-MM-dd'T'HH:mm:ss.SSSZ")?.date
-        return (date?.toRelative(style: RelativeFormatter.defaultStyle(), locale: Locales.chinese))!
+
+        guard let ret = date?.toRelative(style: RelativeFormatter.defaultStyle(), locale: Locales.chinese) else {
+            return str
+        }
+
+        return ret
     }
-    
+
     func toUnixMillTime() -> String {
         let str = self
-        
+
         let date = str.toDate("yyyy-MM-dd'T'HH:mm:ss.SSSZ")?.date
-        return String(Int(date!.timeIntervalSince1970) * 1000)
+
+        guard let timeInterval = date?.timeIntervalSince1970 else {
+            return str
+        }
+
+        return String(Int(timeInterval) * 1000)
     }
 }
