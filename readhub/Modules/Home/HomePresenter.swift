@@ -16,16 +16,16 @@ import UIKit
 final class HomePresenter {
     // MARK: - Public prperties -
 
+    var topics = BehaviorRelay<[TopicItemModel]>(value: [])
+    var news = BehaviorRelay<[NewsItemModel]>(value: [])
+    var technews = BehaviorRelay<[NewsItemModel]>(value: [])
+    var blockchains = BehaviorRelay<[NewsItemModel]>(value: [])
+
     // MARK: - Private properties -
 
     private unowned let view: HomeViewInterface
     private let interactor: HomeInteractorInterface
     private let wireframe: HomeWireframeInterface
-
-    var topics = BehaviorRelay<[TopicItemModel]>(value: [])
-    var news = BehaviorRelay<[NewsItemModel]>(value: [])
-    var technews = BehaviorRelay<[NewsItemModel]>(value: [])
-    var blockchains = BehaviorRelay<[NewsItemModel]>(value: [])
 
     private let disposeBag = DisposeBag()
 
