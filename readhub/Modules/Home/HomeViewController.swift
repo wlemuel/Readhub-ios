@@ -69,7 +69,7 @@ final class HomeViewController: BaseViewController {
     }
 
     private func setupNavigationBar() {
-        navigationController?.navigationBar.barTintColor = kThemePrimaryColor
+        navigationController?.navigationBar.barTintColor = kThemeBase2Color
     }
 
     private func setupLayout() {
@@ -80,7 +80,7 @@ final class HomeViewController: BaseViewController {
     private func setupTitleView() {
         let logo = UIBarButtonItem(title: "Readhub+", style: .plain, target: self, action: nil).then {
             let attributes = [
-                NSAttributedString.Key.foregroundColor: kThemeBase2Color,
+                NSAttributedString.Key.foregroundColor: kThemePrimaryColor,
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: Metric.titleIconSize),
             ]
             $0.setTitleTextAttributes(attributes, for: .normal)
