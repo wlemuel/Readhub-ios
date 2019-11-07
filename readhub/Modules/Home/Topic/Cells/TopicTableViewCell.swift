@@ -21,7 +21,7 @@ fileprivate struct Metrics {
     static let titleFontSize: CGFloat = 18.0
     static let titleHeight: CGFloat = 60.0
 
-    static let summaryFontSize: CGFloat = 14.0
+    static let summaryFontSize: CGFloat = 15.0
 
     static let timeFontSize: CGFloat = 13.0
 
@@ -115,7 +115,7 @@ class TopicTableViewCell: UITableViewCell {
             make.height.equalTo(1).priority(.high)
             make.width.bottom.equalToSuperview()
         }
-        
+
         let hline = UIView().then {
             $0.backgroundColor = kThemeFont3Color
         }
@@ -185,7 +185,7 @@ class TopicTableViewCell: UITableViewCell {
 
         // show the top 3 news
         if newsList.count > 3 {
-            newsList[3 ..< newsList.endIndex] = []
+            newsList.replaceSubrange(3 ..< newsList.endIndex, with: [])
         }
 
         if model.expanded {

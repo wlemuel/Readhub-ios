@@ -13,7 +13,7 @@ import RxSwift
 import UIKit
 
 fileprivate struct Metrics {
-    static let titleFontSize: CGFloat = 14.0
+    static let titleFontSize: CGFloat = 15.0
     static let siteFontSize: CGFloat = 13.0
 }
 

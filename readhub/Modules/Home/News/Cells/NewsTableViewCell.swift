@@ -16,7 +16,7 @@ fileprivate struct Metrics {
     static let titleFontSize: CGFloat = 18.0
     static let titleHeight: CGFloat = 60.0
 
-    static let summaryFontSize: CGFloat = 14.0
+    static let summaryFontSize: CGFloat = 15.0
 
     static let timeFontSize: CGFloat = 13.0
 }
