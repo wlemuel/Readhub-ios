@@ -40,7 +40,6 @@ final class HomeViewController: BaseViewController {
 
     private let titles: [String] = ["热门话题", "科技动态", "开发者", "区块链"]
     private let pageVC = TYTabPagerController().then {
-        $0.pagerController.scrollView?.backgroundColor = kThemePrimaryColor
         $0.pagerController.layout.prefetchItemCount = 3
         $0.tabBar.layout.cellWidth = kScreenW * 0.24
         $0.tabBar.layout.progressColor = kThemePrimaryColor
@@ -103,12 +102,6 @@ final class HomeViewController: BaseViewController {
             make.left.right.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
-
-        // add shadow effect
-        pageView?.layer.shadowColor = kThemeFontColor.cgColor
-        pageView?.layer.shadowOpacity = 0.7
-        pageView?.layer.shadowRadius = 5
-        pageView?.layer.shadowOffset = CGSize(width: 10.0, height: 10.0)
 
         pageVC.reloadData()
 
