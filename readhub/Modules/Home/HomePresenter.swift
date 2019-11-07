@@ -21,6 +21,8 @@ final class HomePresenter {
     var technews = BehaviorRelay<[NewsItemModel]>(value: [])
     var blockchains = BehaviorRelay<[NewsItemModel]>(value: [])
 
+    var errors = PublishSubject<ReadhubApiError>()
+
     // MARK: - Private properties -
 
     private unowned let view: HomeViewInterface
@@ -47,17 +49,26 @@ extension HomePresenter: HomePresenterInterface {
 
     func getTopicList(lastCursor: String, _ refresh: Bool) {
         interactor.getTopicList(lastCursor: lastCursor, pageSize: 20)
-            .subscribe(onSuccess: { [weak self] topicList in
+            .subscribe(onSuccess: { [weak self] topicData in
                 guard let `self` = self else { return }
 
-                if refresh {
-                    self.topics.accept(topicList.data ?? [])
-                } else {
-                    self.topics.accept(self.topics.value + (topicList.data ?? []))
+                guard let topicList = topicData.data else {
+                    self.errors.onNext(.noData(newsType: .topic))
+                    return
                 }
 
-            }) { error in
+                if refresh {
+                    self.topics.accept(topicList)
+                } else {
+                    self.topics.accept(self.topics.value + topicList)
+                }
+
+            }) { [weak self] error in
+                guard let `self` = self else { return }
                 print(error)
+
+                self.errors.onNext(.serverFailed(newsType: .topic))
+
             }.disposed(by: disposeBag)
     }
 
@@ -75,16 +86,24 @@ extension HomePresenter: HomePresenterInterface {
 
     func getNewsList(lastCursor: String, _ refresh: Bool) {
         interactor.getNewsList(lastCursor: lastCursor, pageSize: 20)
-            .subscribe(onSuccess: { [weak self] newsList in
+            .subscribe(onSuccess: { [weak self] newsData in
                 guard let `self` = self else { return }
 
-                if refresh {
-                    self.news.accept(newsList.data ?? [])
-                } else {
-                    self.news.accept(self.news.value + (newsList.data ?? []))
+                guard let newsList = newsData.data else {
+                    self.errors.onNext(.noData(newsType: .news))
+                    return
                 }
-            }) { error in
+
+                if refresh {
+                    self.news.accept(newsList)
+                } else {
+                    self.news.accept(self.news.value + newsList)
+                }
+            }) { [weak self] error in
+                guard let `self` = self else { return }
                 print(error)
+
+                self.errors.onNext(.serverFailed(newsType: .news))
             }.disposed(by: disposeBag)
     }
 
@@ -99,8 +118,11 @@ extension HomePresenter: HomePresenterInterface {
                     self.technews.accept(self.technews.value + (technewsList.data ?? []))
                 }
 
-            }) { error in
+            }) { [weak self] error in
+                guard let `self` = self else { return }
                 print(error)
+
+                self.errors.onNext(.serverFailed(newsType: .technews))
             }.disposed(by: disposeBag)
     }
 
@@ -114,8 +136,11 @@ extension HomePresenter: HomePresenterInterface {
                 } else {
                     self.blockchains.accept(self.blockchains.value + (blockchainList.data ?? []))
                 }
-            }) { error in
+            }) { [weak self] error in
+                guard let `self` = self else { return }
                 print(error)
+
+                self.errors.onNext(.serverFailed(newsType: .blockchain))
             }.disposed(by: disposeBag)
     }
 }

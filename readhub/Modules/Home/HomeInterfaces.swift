@@ -36,13 +36,15 @@ protocol HomePresenterInterface: PresenterInterface {
     var technews: BehaviorRelay<[NewsItemModel]> { get }
     var blockchains: BehaviorRelay<[NewsItemModel]> { get }
 
+    var errors: PublishSubject<ReadhubApiError> { get }
+
     // MARK: Functions -
 
     func getTopicList(lastCursor: String, _ refresh: Bool)
     func getNewsList(lastCursor: String, _ refresh: Bool)
     func getTechnewsList(lastCursor: String, _ refresh: Bool)
     func getBlockchainList(lastCursor: String, _ refresh: Bool)
-    
+
     func toggleTopicCellAt(index: Int)
 }
 

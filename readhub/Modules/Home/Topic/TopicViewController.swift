@@ -23,6 +23,7 @@ class TopicViewController: BaseViewController {
     private var presenter: HomePresenterInterface!
 
     private var dataDriver: Driver<[TopicItemModel]>!
+    private var errorDriver: Driver<ReadhubApiError>!
     private var lastCursor: String = ""
 
     private let disposeBag = DisposeBag()
@@ -89,6 +90,26 @@ class TopicViewController: BaseViewController {
                 self.lastCursor = String(item!.order!)
             }).disposed(by: disposeBag)
 
+        errorDriver = presenter.errors.asDriver(onErrorJustReturn: .serverFailed(newsType: .all))
+
+        errorDriver.asObservable()
+            .subscribe(onNext: { [weak self] error in
+                guard let `self` = self else { return }
+
+                switch error {
+                case let .serverFailed(newsType):
+                    if newsType == .topic {
+                        self.showNetworkErrorView()
+                    }
+                case let .noData(newsType):
+                    if newsType == .topic {
+                        self.showEmptyView()
+                    }
+                default: break
+                }
+
+            }).disposed(by: disposeBag)
+
         // setup tableview
         tableView?.mj_header.rx.refreshing
             .startWith(())
@@ -118,5 +139,34 @@ class TopicViewController: BaseViewController {
                 self.presenter.toggleTopicCellAt(index: indexPath.row)
 
             }).disposed(by: disposeBag)
+    }
+
+    private func showNetworkErrorView() {
+        endMjRefresh()
+
+        let label = UILabel().then {
+            $0.text = kmsgNoNetwork
+            $0.textColor = kThemeFont2Color
+            $0.textAlignment = .center
+        }
+
+        tableView?.backgroundView = label
+    }
+
+    private func showEmptyView() {
+        endMjRefresh()
+
+        let label = UILabel().then {
+            $0.text = kmsgNoData
+            $0.textColor = kThemeFont2Color
+            $0.textAlignment = .center
+        }
+
+        tableView?.backgroundView = label
+    }
+
+    private func endMjRefresh() {
+        tableView?.mj_header.endRefreshing()
+        tableView?.mj_footer.endRefreshing()
     }
 }

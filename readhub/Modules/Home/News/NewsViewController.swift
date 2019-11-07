@@ -13,9 +13,11 @@ import RxSwift
 import SafariServices
 
 enum NewsType {
+    case topic
     case news
     case technews
     case blockchain
+    case all
 }
 
 fileprivate struct Metrics {
@@ -23,11 +25,14 @@ fileprivate struct Metrics {
 }
 
 class NewsViewController: BaseViewController {
+    // MARK: Private -
+
     private var presenter: HomePresenterInterface!
     private var newsType: NewsType = .news
 
     private var tableView: UITableView!
     private var dataDriver: Driver<[NewsItemModel]>!
+    private var errorDriver: Driver<ReadhubApiError>!
     private var lastCursor: String = ""
 
     private let disposeBag = DisposeBag()
@@ -78,6 +83,7 @@ class NewsViewController: BaseViewController {
             dataDriver = presenter.technews.asDriver()
         case .blockchain:
             dataDriver = presenter.blockchains.asDriver()
+        default: break
         }
 
         dataDriver.drive(tableView!.rx.items(cellIdentifier: cellId, cellType: NewsTableViewCell.self)) { _, model, cell in
@@ -100,6 +106,26 @@ class NewsViewController: BaseViewController {
                 guard let `self` = self else { return }
 
                 self.lastCursor = item?.publishDate?.toUnixMillTime() ?? ""
+            }).disposed(by: disposeBag)
+
+        errorDriver = presenter.errors.asDriver(onErrorJustReturn: .serverFailed(newsType: .all))
+
+        errorDriver.asObservable()
+            .subscribe(onNext: { [weak self] error in
+                guard let `self` = self else { return }
+
+                switch error {
+                case let .serverFailed(newsType):
+                    if newsType == self.newsType {
+                        self.showNetworkErrorView()
+                    }
+                case let .noData(newsType):
+                    if newsType == self.newsType {
+                        self.showEmptyView()
+                    }
+                default: break
+                }
+
             }).disposed(by: disposeBag)
 
         // handle tableview events
@@ -127,6 +153,7 @@ class NewsViewController: BaseViewController {
                     self.presenter.getTechnewsList(lastCursor: "", true)
                 case .blockchain:
                     self.presenter.getBlockchainList(lastCursor: "", true)
+                default: break
                 }
             }).disposed(by: disposeBag)
 
@@ -135,6 +162,7 @@ class NewsViewController: BaseViewController {
                 guard let `self` = self else { return }
 
                 if self.lastCursor == "" {
+                    self.tableView?.mj_footer.endRefreshing()
                     return
                 }
 
@@ -145,7 +173,37 @@ class NewsViewController: BaseViewController {
                     self.presenter.getTechnewsList(lastCursor: self.lastCursor, false)
                 case .blockchain:
                     self.presenter.getBlockchainList(lastCursor: self.lastCursor, false)
+                default: break
                 }
             }).disposed(by: disposeBag)
+    }
+
+    private func showNetworkErrorView() {
+        self.endMjRefresh()
+        
+        let label = UILabel().then {
+            $0.text = kmsgNoNetwork
+            $0.textColor = kThemeFont2Color
+            $0.textAlignment = .center
+        }
+        
+        tableView?.backgroundView = label
+    }
+
+    private func showEmptyView() {
+        self.endMjRefresh()
+        
+        let label = UILabel().then {
+            $0.text = kmsgNoData
+            $0.textColor = kThemeFont2Color
+            $0.textAlignment = .center
+        }
+        
+        tableView?.backgroundView = label
+    }
+    
+    private func endMjRefresh() {
+        tableView?.mj_header.endRefreshing()
+        tableView?.mj_footer.endRefreshing()
     }
 }

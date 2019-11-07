@@ -84,3 +84,8 @@ func kLog<T>(_ message: T, file: String = #file, funcName: String = #function, l
 
     #endif
 }
+
+// MARK: - 文本提示
+
+let kmsgNoNetwork = "网络异常，请检查网络设置"
+let kmsgNoData = "暂无数据"

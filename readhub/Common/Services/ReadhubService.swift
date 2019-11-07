@@ -32,6 +32,12 @@ enum ReadhubApi {
 //    case newCount(lastCursor: String)
 }
 
+enum ReadhubApiError {
+    case noData(newsType: NewsType)
+    case noMoreData(newsType: NewsType)
+    case serverFailed(newsType: NewsType)
+}
+
 extension ReadhubApi: TargetType {
     var baseURL: URL {
         return URL(string: "https://api.readhub.cn")!
