@@ -16,8 +16,9 @@ import TYPagerController
 import UIKit
 
 fileprivate struct Metric {
-    static let pagerBarFontSize = UIFont.systemFont(ofSize: 18.0)
+    static let pagerBarFont = UIFont.systemFont(ofSize: 18.0)
     static let pagerBarHeight: CGFloat = 40.0
+
     static let titleHeight: CGFloat = 50.0
 
     static let titleIconSize: CGFloat = 25.0
@@ -39,16 +40,17 @@ final class HomeViewController: BaseViewController {
 
     private let titles: [String] = ["热门话题", "科技动态", "开发者", "区块链"]
     private let pageVC = TYTabPagerController().then {
-        $0.pagerController.scrollView?.backgroundColor = kThemeMainColor
+        $0.pagerController.scrollView?.backgroundColor = kThemePrimaryColor
         $0.pagerController.layout.prefetchItemCount = 3
-        $0.tabBar.layout.cellWidth = kScreenW * 0.25
-        $0.tabBar.layout.progressColor = kThemeMainColor
-        $0.tabBar.layout.selectedTextColor = kThemeMainColor
-        $0.tabBar.backgroundColor = kThemeWhiteColor
+        $0.tabBar.layout.cellWidth = kScreenW * 0.24
+        $0.tabBar.layout.progressColor = kThemePrimaryColor
+        $0.tabBar.layout.selectedTextColor = kThemePrimaryColor
+        $0.tabBar.backgroundColor = kThemeBase2Color
         $0.tabBar.layout.cellSpacing = 0
         $0.tabBar.layout.cellEdging = 0
-        $0.tabBar.layout.normalTextFont = Metric.pagerBarFontSize
-        $0.tabBar.layout.selectedTextFont = Metric.pagerBarFontSize
+        $0.tabBar.layout.normalTextFont = Metric.pagerBarFont
+        $0.tabBar.layout.selectedTextFont = Metric.pagerBarFont
+        $0.tabBar.layout.adjustContentCellsCenter = true
         $0.tabBarHeight = Metric.pagerBarHeight
     }
 
@@ -67,7 +69,7 @@ final class HomeViewController: BaseViewController {
     }
 
     private func setupNavigationBar() {
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.navigationBar.barTintColor = kThemePrimaryColor
     }
 
     private func setupLayout() {
@@ -76,46 +78,15 @@ final class HomeViewController: BaseViewController {
     }
 
     private func setupTitleView() {
-        titleView = UIView().then {
-            $0.backgroundColor = kThemeWhiteColor
-        }
-        view.addSubview(titleView!)
-        titleView.snp.makeConstraints({ make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.left.right.equalToSuperview()
-            make.width.equalToSuperview()
-            make.height.equalTo(Metric.titleHeight)
-        })
-
-        let logoLabel = UILabel().then {
-            $0.text = "Readhub+"
-            $0.textColor = kThemeMainColor
-            $0.font = UIFont.systemFont(ofSize: 25)
-        }
-        titleView.addSubview(logoLabel)
-        logoLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(MetricsGlobal.padding)
-            make.centerY.equalToSuperview()
+        let logo = UIBarButtonItem(title: "Readhub+", style: .plain, target: self, action: nil).then {
+            let attributes = [
+                NSAttributedString.Key.foregroundColor: kThemeBase2Color,
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: Metric.titleIconSize),
+            ]
+            $0.setTitleTextAttributes(attributes, for: .normal)
         }
 
-        let hline = UIView().then {
-            $0.backgroundColor = kThemeSeperatorColor
-        }
-        titleView.addSubview(hline)
-        hline.snp.makeConstraints { make in
-            make.bottom.equalToSuperview()
-            make.width.equalToSuperview()
-            make.height.equalTo(2)
-            make.left.right.equalToSuperview()
-        }
-
-        settingBtn = UIImageView(image: UIImage(named: "icon_settings"))
-        titleView.addSubview(settingBtn)
-        settingBtn.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.width.height.equalTo(Metric.titleIconSize)
-            make.right.equalToSuperview().inset(Metric.titleIconMargin)
-        }
+        navigationItem.leftBarButtonItem = logo
     }
 
     private func setupPageController() {
@@ -124,12 +95,21 @@ final class HomeViewController: BaseViewController {
 
         pageVC.delegate = self
         pageVC.dataSource = self
-        pageVC.view.snp.makeConstraints { make in
-            make.top.equalTo(titleView.snp.bottom)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
+
+        let pageView = pageVC.view
+
+        pageView?.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.left.right.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
+
+        // add shadow effect
+        pageView?.layer.shadowColor = kThemeFontColor.cgColor
+        pageView?.layer.shadowOpacity = 0.7
+        pageView?.layer.shadowRadius = 5
+        pageView?.layer.shadowOffset = CGSize(width: 10.0, height: 10.0)
+
         pageVC.reloadData()
 
         // 设置起始页
@@ -161,24 +141,24 @@ extension HomeViewController: TYTabPagerControllerDelegate, TYTabPagerController
     func tabPagerController(_ tabPagerController: TYTabPagerController, controllerFor index: Int, prefetching: Bool) -> UIViewController {
         if index == 0 {
             let VC = TopicViewController(presenter: presenter)
-            VC.view.backgroundColor = kThemeGrayColor
+            VC.view.backgroundColor = kThemeBase2Color
             return VC
         } else if index == 1 {
             let VC = NewsViewController(newsType: .news, presenter: presenter)
-            VC.view.backgroundColor = kThemeGrayColor
+            VC.view.backgroundColor = kThemeBase2Color
             return VC
         } else if index == 2 {
             let VC = NewsViewController(newsType: .technews, presenter: presenter)
-            VC.view.backgroundColor = kThemeGrayColor
+            VC.view.backgroundColor = kThemeBase2Color
             return VC
         } else if index == 3 {
             let VC = NewsViewController(newsType: .blockchain, presenter: presenter)
-            VC.view.backgroundColor = kThemeGrayColor
+            VC.view.backgroundColor = kThemeBase2Color
             return VC
         }
 
         let VC = UIViewController()
-        VC.view.backgroundColor = kThemeWhiteColor
+        VC.view.backgroundColor = kThemeBase2Color
         return VC
     }
 

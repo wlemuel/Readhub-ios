@@ -34,29 +34,44 @@ let kScreenH = UIScreen.main.bounds.height
 // 屏幕高度
 let kScreenW = UIScreen.main.bounds.width
 
-struct MetricsGlobal {
-    static let padding: CGFloat = 10.0
-}
-
 // MARK: - 颜色方法
 
 func kRGBA(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) -> UIColor {
     return UIColor(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: a)
 }
 
-// MARK: - 常用按钮颜色
+func kColor(light: UIColor, dark: UIColor) -> UIColor {
+    return UIColor { (trainCollection) -> UIColor in
+        if trainCollection.userInterfaceStyle == .dark {
+            return dark
+        } else {
+            return light
+        }
+    }
+}
 
-// 颜色参考 http://www.sioe.cn/yingyong/yanse-rgb-16/
+// MARK: - 系统配色 (light/dark mode)
 
-let kThemeWhiteColor = UIColor.hexColor(0xFFFFFF)
-let kThemeSeperatorColor = UIColor.hexColor(0xF8F8F8)
-let kThemeGrayColor = UIColor.hexColor(0xFAFAFA)
-let kThemeHintColor = UIColor.hexColor(0x9A9A9A)
-let kThemeTabColor = UIColor.hexColor(0x757575)
-let kThemeBlackColor = UIColor.hexColor(0x000000)
-let kThemeBlackSecondaryColor = UIColor.hexColor(0x333333)
-let kThemeMainColor = UIColor.hexColor(0x0080FF)
-let kThemeSecondColor = UIColor.hexColor(0x737373)
+let kThemePrimaryColor = kColor(light: UIColor.hexColor(0x2AB3C4), dark: UIColor.hexColor(0xBA4A21))
+let kThemeSecondaryColor = kColor(light: UIColor.hexColor(0x55939C), dark: UIColor.hexColor(0xFBBB02))
+
+let kThemeBaseColor = kColor(light: UIColor.hexColor(0xEEEEEE), dark: UIColor.hexColor(0x111111))
+let kThemeBase2Color = kColor(light: UIColor.hexColor(0xF7F7F7), dark: UIColor.hexColor(0x080808))
+let kThemeBase3Color = kColor(light: UIColor.hexColor(0x969696), dark: UIColor.hexColor(0x696969))
+
+let kThemeFontColor = kColor(light: UIColor.hexColor(0x333333), dark: UIColor.hexColor(0xCCCCCC))
+let kThemeFont2Color = kColor(light: UIColor.hexColor(0x8E8E8E), dark: UIColor.hexColor(0x717171))
+let kThemeFont3Color = kColor(light: UIColor.hexColor(0xBBBBBB), dark: UIColor.hexColor(0x444444))
+let kThemeFont4Color = kColor(light: UIColor.hexColor(0xADC0CD), dark: UIColor.hexColor(0x523F32))
+
+let kThemeBackgroundColor = kColor(light: UIColor.hexColor(0xFFFFFF), dark: UIColor.hexColor(0x000000))
+
+// MARK: - 元素间距
+
+let kMargin: CGFloat = 40.0
+let kMargin2: CGFloat = 30.0
+let kMargin3: CGFloat = 16.0
+let kMargin4: CGFloat = 10.0
 
 // MARK: - 自定义打印方法
 

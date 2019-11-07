@@ -18,14 +18,14 @@ import UIKit
 fileprivate struct Metrics {
     static let lineSpacing: CGFloat = 8.0
 
-    static let titleFontSize: CGFloat = 19.0
+    static let titleFontSize: CGFloat = 18.0
     static let titleHeight: CGFloat = 60.0
 
-    static let summaryFontSize: CGFloat = 16.0
+    static let summaryFontSize: CGFloat = 14.0
 
     static let timeFontSize: CGFloat = 13.0
 
-    static let goButtonHeight: CGFloat = 50.0
+    static let goButtonHeight: CGFloat = 60.0
 
     static let cellHeight: CGFloat = 50.0
 }
@@ -58,62 +58,72 @@ class TopicTableViewCell: UITableViewCell {
     }
 
     private func setupLayout() {
-        contentView.backgroundColor = kThemeGrayColor
+        contentView.backgroundColor = kThemeBase2Color
 
         titleLabel = UILabel().then {
-            $0.textColor = kThemeBlackColor
+            $0.textColor = kThemeFontColor
             $0.numberOfLines = 2
             $0.font = UIFont.systemFont(ofSize: Metrics.titleFontSize)
         }
         addSubview(titleLabel)
 
         titleLabel.snp.makeConstraints({ make in
-            make.top.left.right.equalToSuperview().inset(MetricsGlobal.padding)
+            make.top.left.right.equalToSuperview().inset(kMargin3)
         })
 
         summaryLabel = UILabel().then {
-            $0.textColor = kThemeSecondColor
+            $0.textColor = kThemeFont2Color
             $0.numberOfLines = 0
             $0.font = UIFont.systemFont(ofSize: Metrics.summaryFontSize)
         }
         addSubview(summaryLabel)
         summaryLabel.snp.makeConstraints({ make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(MetricsGlobal.padding)
-            make.left.right.equalToSuperview().inset(MetricsGlobal.padding)
+            make.top.equalTo(titleLabel.snp.bottom).offset(kMargin3)
+            make.left.right.equalToSuperview().inset(kMargin3)
         })
 
         timeLabel = UILabel().then {
-            $0.textColor = kThemeHintColor
+            $0.textColor = kThemeFont3Color
             $0.font = UIFont.systemFont(ofSize: Metrics.timeFontSize)
         }
         addSubview(timeLabel)
         timeLabel.snp.makeConstraints({ make in
-            make.top.equalTo(summaryLabel.snp.bottom).offset(MetricsGlobal.padding)
-            make.left.right.equalToSuperview().inset(MetricsGlobal.padding)
+            make.top.equalTo(summaryLabel.snp.bottom).offset(kMargin4)
+            make.left.right.equalToSuperview().inset(kMargin3)
         })
 
-        newsTableView = UITableView()
+        newsTableView = UITableView().then {
+            $0.rowHeight = Metrics.cellHeight
+            $0.separatorStyle = .none
+
+            $0.register(TopicNewsTableViewCell.self, forCellReuseIdentifier: newsCellId)
+        }
         addSubview(newsTableView)
         newsTableView.snp.makeConstraints { make in
-            make.top.equalTo(timeLabel.snp.bottom).offset(MetricsGlobal.padding)
-            make.left.right.equalToSuperview().inset(MetricsGlobal.padding)
+            make.top.equalTo(timeLabel.snp.bottom).offset(kMargin3).priority(.low)
+            make.left.right.equalToSuperview().inset(kMargin3)
             make.height.equalTo(1).priority(.high)
         }
-        newsTableView.register(TopicNewsTableViewCell.self, forCellReuseIdentifier: newsCellId)
-//        newsTableView.estimatedRowHeight = Metrics.cellHeight
-//        newsTableView.rowHeight = UITableView.automaticDimension
-        newsTableView.rowHeight = Metrics.cellHeight
-        newsTableView.separatorStyle = .none
 
         goBtn = UIButton().then {
             $0.setTitle("", for: .normal)
-            $0.setTitleColor(kThemeBlackSecondaryColor, for: .normal)
+            $0.setTitleColor(kThemeSecondaryColor, for: .normal)
         }
         addSubview(goBtn)
         goBtn.snp.makeConstraints { make in
             make.top.equalTo(newsTableView.snp.bottom)
             make.height.equalTo(1).priority(.high)
             make.width.bottom.equalToSuperview()
+        }
+        
+        let hline = UIView().then {
+            $0.backgroundColor = kThemeFont3Color
+        }
+        addSubview(hline)
+        hline.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.height.equalTo(0.5)
+            make.left.right.equalToSuperview().inset(kMargin3)
         }
     }
 
@@ -171,13 +181,20 @@ class TopicTableViewCell: UITableViewCell {
 
         goBtn.setTitle(model.expanded ? "查看主题 ▷" : "", for: .normal)
 
-        let newsList = model.newsArray ?? []
+        var newsList = model.newsArray ?? []
+
+        // show the top 3 news
+        if newsList.count > 3 {
+            newsList[3 ..< newsList.endIndex] = []
+        }
 
         if model.expanded {
             news.accept(newsList)
         }
 
         newsTableView.snp.updateConstraints { make in
+            make.top.equalTo(timeLabel.snp.bottom).offset(model.expanded ? kMargin : kMargin3)
+                .priority(.low)
             make.height.equalTo(model.expanded ? Metrics.cellHeight * CGFloat(newsList.count) : 1).priority(.high)
         }
 

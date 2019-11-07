@@ -62,6 +62,8 @@ class NewsViewController: BaseViewController {
 
         tableView?.estimatedRowHeight = Metrics.cellHeight
         tableView?.rowHeight = UITableView.automaticDimension
+        tableView?.separatorStyle = .none
+        tableView?.backgroundColor = kThemeBase2Color
 
         tableView?.mj_header = MJRefreshNormalHeader()
         tableView?.mj_footer = MJRefreshBackNormalFooter()

@@ -13,9 +13,8 @@ import RxSwift
 import UIKit
 
 fileprivate struct Metrics {
-    static let titleFontSize: CGFloat = 17.0
+    static let titleFontSize: CGFloat = 14.0
     static let siteFontSize: CGFloat = 13.0
-    static let dotWidth: CGFloat = 20.0
 }
 
 class TopicNewsTableViewCell: UITableViewCell {
@@ -38,40 +37,39 @@ class TopicNewsTableViewCell: UITableViewCell {
     }
 
     private func setupLayout() {
-        contentView.backgroundColor = kThemeGrayColor
-
+        contentView.backgroundColor = kThemeBase2Color
+        
         let dotLabel = UILabel().then {
-            $0.textColor = kThemeHintColor
+            $0.textColor = kThemeFontColor
             $0.font = UIFont.systemFont(ofSize: Metrics.titleFontSize)
             $0.text = "◦  "
         }
         addSubview(dotLabel)
         dotLabel.snp.makeConstraints { make in
             make.top.left.equalToSuperview()
-            make.width.equalTo(Metrics.dotWidth).priority(.medium)
         }
 
         titleLabel = UILabel().then {
-            $0.textColor = kThemeBlackSecondaryColor
+            $0.textColor = kThemeFontColor
             $0.font = UIFont.systemFont(ofSize: Metrics.titleFontSize)
             $0.numberOfLines = 1
         }
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.left.equalTo(dotLabel.snp.right)
+            make.left.equalToSuperview().offset(kMargin3)
             make.right.equalToSuperview()
         }
 
         siteLabel = UILabel().then {
-            $0.textColor = kThemeHintColor
+            $0.textColor = kThemeFont3Color
             $0.font = UIFont.systemFont(ofSize: Metrics.siteFontSize)
         }
         addSubview(siteLabel)
         siteLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom)
             make.left.equalTo(dotLabel.snp.right)
-            make.bottom.equalToSuperview().inset(MetricsGlobal.padding)
+            make.bottom.equalToSuperview().inset(kMargin3)
         }
     }
 

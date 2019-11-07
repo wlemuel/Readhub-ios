@@ -13,7 +13,7 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         kLog("init: \(type(of: self))")
 
-        view.backgroundColor = kThemeWhiteColor
+        view.backgroundColor = kThemeBackgroundColor
     }
 
     deinit {

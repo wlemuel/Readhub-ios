@@ -2,6 +2,9 @@ platform :ios, '10.0'
 
 target 'readhub' do
   use_frameworks!
+  
+  # ignore all warnings from all pods
+  inhibit_all_warnings!
 
   # Pods for readhub
   pod 'RxSwift', '~> 5.0'
