@@ -43,7 +43,7 @@ enum NewsType {
     case news
     case technews
     case blockchain
-    case all
+    case unknown
 }
 
 extension ReadhubApi: TargetType {

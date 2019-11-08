@@ -90,7 +90,7 @@ class TopicViewController: BaseViewController {
                 self.lastCursor = String(item!.order!)
             }).disposed(by: disposeBag)
 
-        errorDriver = presenter.errors.asDriver(onErrorJustReturn: .serverFailed(newsType: .all))
+        errorDriver = presenter.errors.asDriver(onErrorJustReturn: .serverFailed(newsType: .unknown))
 
         errorDriver.asObservable()
             .subscribe(onNext: { [weak self] error in

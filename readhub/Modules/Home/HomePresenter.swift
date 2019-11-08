@@ -22,12 +22,15 @@ final class HomePresenter {
     var blockchains = BehaviorRelay<[NewsItemModel]>(value: [])
 
     var errors = PublishSubject<ReadhubApiError>()
+    var notifies = PublishSubject<NewsType>()
 
     // MARK: - Private properties -
 
     private unowned let view: HomeViewInterface
     private let interactor: HomeInteractorInterface
     private let wireframe: HomeWireframeInterface
+
+    private var timer: Disposable?
 
     private let disposeBag = DisposeBag()
 
@@ -142,5 +145,63 @@ extension HomePresenter: HomePresenterInterface {
 
                 self.errors.onNext(.serverFailed(newsType: .blockchain))
             }.disposed(by: disposeBag)
+    }
+
+    func startUpdateCheck() {
+        timer = Observable<Int>.interval(.seconds(5 * 60), scheduler: SerialDispatchQueueScheduler(qos: .default)).subscribe { [weak self] _ in
+            guard let `self` = self else { return }
+
+            self.checkNews()
+        }
+
+        timer?.disposed(by: disposeBag)
+    }
+
+    func stopUpdateCheck() {
+        timer?.dispose()
+    }
+
+    private func checkNews() {
+        interactor.getNewsList(lastCursor: "", pageSize: 1)
+            .subscribe(onSuccess: { [weak self] newsData in
+                guard let `self` = self else { return }
+
+                // check whether there are news updated
+                if let newsList = newsData.data {
+                    if self.news.value.count > 0 &&
+                        self.news.value[0].id != newsList[0].id {
+                        self.notifies.onNext(.news)
+                    }
+                }
+            }).disposed(by: disposeBag)
+    }
+
+    private func checkTechnews() {
+        interactor.getTechnewsList(lastCursor: "", pageSize: 1)
+            .subscribe(onSuccess: { [weak self] newsData in
+                guard let `self` = self else { return }
+
+                // check whether there are news updated
+                if let newsList = newsData.data {
+                    if self.technews.value.count > 0 &&
+                        self.technews.value[0].id != newsList[0].id {
+                        self.notifies.onNext(.technews)
+                    }
+                }
+            }).disposed(by: disposeBag)
+    }
+
+    private func checkBlockchains() {
+        interactor.getBlockchainList(lastCursor: "", pageSize: 1)
+            .subscribe(onSuccess: { [weak self] newsData in
+                guard let `self` = self else { return }
+
+                if let newsList = newsData.data {
+                    if self.blockchains.value.count > 0 &&
+                        self.blockchains.value[0].id != newsList[0].id {
+                        self.notifies.onNext(.blockchain)
+                    }
+                }
+            }).disposed(by: disposeBag)
     }
 }

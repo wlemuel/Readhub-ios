@@ -37,6 +37,7 @@ protocol HomePresenterInterface: PresenterInterface {
     var blockchains: BehaviorRelay<[NewsItemModel]> { get }
 
     var errors: PublishSubject<ReadhubApiError> { get }
+    var notifies: PublishSubject<NewsType> { get }
 
     // MARK: Functions -
 
@@ -46,6 +47,9 @@ protocol HomePresenterInterface: PresenterInterface {
     func getBlockchainList(lastCursor: String, _ refresh: Bool)
 
     func toggleTopicCellAt(index: Int)
+    
+    func startUpdateCheck()
+    func stopUpdateCheck()
 }
 
 protocol HomeInteractorInterface: InteractorInterface {

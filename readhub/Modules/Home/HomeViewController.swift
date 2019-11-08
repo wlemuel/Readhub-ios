@@ -51,6 +51,15 @@ final class HomeViewController: BaseViewController {
         super.viewWillAppear(animated)
         setupNavigationBar()
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.startUpdateCheck()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        presenter.stopUpdateCheck()
+    }
 }
 
 // MARK: - Extensions -

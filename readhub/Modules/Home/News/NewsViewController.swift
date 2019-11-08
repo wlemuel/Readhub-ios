@@ -14,6 +14,10 @@ import SafariServices
 
 fileprivate struct Metrics {
     static let cellHeight: CGFloat = 150.0
+
+    static let notifyHeight: CGFloat = 40.0
+    static let notifyWidth: CGFloat = 150.0
+    static let notifyFontSize: CGFloat = 13.0
 }
 
 class NewsViewController: BaseViewController {
@@ -23,12 +27,18 @@ class NewsViewController: BaseViewController {
     private var newsType: NewsType = .news
 
     private var tableView: UITableView!
+    private var notifyView: UIButton!
+
     private var dataDriver: Driver<[NewsItemModel]>!
     private var errorDriver: Driver<ReadhubApiError>!
+    private var notifyDriver: Driver<NewsType>!
+
     private var lastCursor: String = ""
 
     private let disposeBag = DisposeBag()
     private let cellId = "NewsCell"
+
+    private var isNotifying = false
 
     init(newsType: NewsType, presenter: HomePresenterInterface) {
         self.presenter = presenter
@@ -64,6 +74,20 @@ class NewsViewController: BaseViewController {
 
         tableView?.mj_header = MJRefreshNormalHeader()
         tableView?.mj_footer = MJRefreshBackNormalFooter()
+
+        // setup notify view
+        notifyView = UIButton().then {
+            $0.backgroundColor = kThemePrimaryColor
+            $0.setTitle("", for: .normal)
+            $0.setTitleColor(kThemeBase2Color, for: .normal)
+            $0.titleLabel?.font = UIFont.systemFont(ofSize: Metrics.notifyFontSize)
+
+            $0.layer.masksToBounds = false
+            $0.layer.cornerRadius = Metrics.notifyHeight / 2
+            $0.layer.shadowColor = kThemeFont2Color.cgColor
+            $0.layer.shadowOpacity = 1
+            $0.layer.shadowOffset = CGSize(width: 0, height: 3)
+        }
     }
 
     private func setupRx() {
@@ -100,7 +124,7 @@ class NewsViewController: BaseViewController {
                 self.lastCursor = item?.publishDate?.toUnixMillTime() ?? ""
             }).disposed(by: disposeBag)
 
-        errorDriver = presenter.errors.asDriver(onErrorJustReturn: .serverFailed(newsType: .all))
+        errorDriver = presenter.errors.asDriver(onErrorJustReturn: .serverFailed(newsType: .unknown))
 
         errorDriver.asObservable()
             .subscribe(onNext: { [weak self] error in
@@ -118,6 +142,18 @@ class NewsViewController: BaseViewController {
                 default: break
                 }
 
+            }).disposed(by: disposeBag)
+
+        // notify handler
+        notifyDriver = presenter.notifies.asDriver(onErrorJustReturn: .unknown)
+
+        notifyDriver.asObservable()
+            .subscribe(onNext: { [weak self] newsType in
+                guard let `self` = self else { return }
+
+                if newsType == self.newsType {
+                    self.showNotify()
+                }
             }).disposed(by: disposeBag)
 
         // handle tableview events
@@ -168,6 +204,38 @@ class NewsViewController: BaseViewController {
                 default: break
                 }
             }).disposed(by: disposeBag)
+
+        tableView.rx.contentOffset
+            .map { $0.y }
+            .subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+
+                if self.isNotifying {
+                    self.hideNotify()
+                }
+
+            }).disposed(by: disposeBag)
+
+        // setup notify view
+        notifyView.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let `self` = self else { return }
+
+                self.hideNotify()
+
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+
+                switch self.newsType {
+                case .news:
+                    self.presenter.getNewsList(lastCursor: "", true)
+                case .technews:
+                    self.presenter.getTechnewsList(lastCursor: "", true)
+                case .blockchain:
+                    self.presenter.getBlockchainList(lastCursor: "", true)
+                default: break
+                }
+
+            }).disposed(by: disposeBag)
     }
 
     private func showNetworkErrorView() {
@@ -197,5 +265,39 @@ class NewsViewController: BaseViewController {
     private func endMjRefresh() {
         tableView?.mj_header.endRefreshing()
         tableView?.mj_footer.endRefreshing()
+    }
+
+    private func showNotify() {
+        if isNotifying {
+            return
+        }
+
+        isNotifying = true
+
+        notifyView.alpha = 0
+        notifyView.setTitle("有新资讯，点击查看", for: .normal)
+
+        view.addSubview(notifyView)
+        notifyView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(kMargin3)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(Metrics.notifyHeight)
+            make.width.equalTo(Metrics.notifyWidth)
+        }
+
+        UIView.animate(withDuration: 0.33, animations: {
+            self.notifyView.alpha = 1.0
+        })
+    }
+
+    private func hideNotify() {
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
+
+        UIView.animate(withDuration: 0.33, animations: {
+            self.notifyView.alpha = 0.0
+        }, completion: { _ in
+            self.notifyView.removeFromSuperview()
+            self.isNotifying = false
+        })
     }
 }
