@@ -41,6 +41,8 @@
 		65B5386D2375082800E7CF28 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B538692375082800E7CF28 /* SettingsPresenter.swift */; };
 		65B5386E2375082800E7CF28 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B5386A2375082800E7CF28 /* SettingsViewController.swift */; };
 		65B5386F2375082800E7CF28 /* SettingsWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B5386B2375082800E7CF28 /* SettingsWireframe.swift */; };
+		65B538732375236B00E7CF28 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B538722375236B00E7CF28 /* SettingModel.swift */; };
+		65B53879237549E000E7CF28 /* NotifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B53878237549E000E7CF28 /* NotifyView.swift */; };
 		65C34E772355B5E1005419D9 /* UIImage+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C34E762355B5E1005419D9 /* UIImage+Size.swift */; };
 		65E5B49823601BFC006881DD /* TopicNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E5B49723601BFB006881DD /* TopicNewsTableViewCell.swift */; };
 		65E5B49C236043E5006881DD /* UIView+Parent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E5B49B236043E5006881DD /* UIView+Parent.swift */; };
@@ -113,6 +115,8 @@
 		65B538692375082800E7CF28 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		65B5386A2375082800E7CF28 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		65B5386B2375082800E7CF28 /* SettingsWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWireframe.swift; sourceTree = "<group>"; };
+		65B538722375236B00E7CF28 /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
+		65B53878237549E000E7CF28 /* NotifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyView.swift; sourceTree = "<group>"; };
 		65C34E762355B5E1005419D9 /* UIImage+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Size.swift"; sourceTree = "<group>"; };
 		65E5B49723601BFB006881DD /* TopicNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicNewsTableViewCell.swift; sourceTree = "<group>"; };
 		65E5B49B236043E5006881DD /* UIView+Parent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Parent.swift"; sourceTree = "<group>"; };
@@ -361,6 +365,7 @@
 		6565353023558D5900840686 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				65B53878237549E000E7CF28 /* NotifyView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -406,12 +411,21 @@
 		65B53867237507F800E7CF28 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				65B538712375209800E7CF28 /* Cells */,
 				65B538682375082800E7CF28 /* SettingsInterfaces.swift */,
 				65B538692375082800E7CF28 /* SettingsPresenter.swift */,
 				65B5386A2375082800E7CF28 /* SettingsViewController.swift */,
 				65B5386B2375082800E7CF28 /* SettingsWireframe.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		65B538712375209800E7CF28 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				65B538722375236B00E7CF28 /* SettingModel.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		65F7031A2355D32B00D7EA19 /* Cells */ = {
@@ -684,7 +698,9 @@
 				65E5B49823601BFC006881DD /* TopicNewsTableViewCell.swift in Sources */,
 				6565354E235599E700840686 /* HomeInteractor.swift in Sources */,
 				6565353A23558DAD00840686 /* ViewInterface.swift in Sources */,
+				65B53879237549E000E7CF28 /* NotifyView.swift in Sources */,
 				6565354023558DDE00840686 /* ReadhubService.swift in Sources */,
+				65B538732375236B00E7CF28 /* SettingModel.swift in Sources */,
 				65B5386C2375082800E7CF28 /* SettingsInterfaces.swift in Sources */,
 				65F7031D2355E3F900D7EA19 /* TopicViewController.swift in Sources */,
 				65B5386F2375082800E7CF28 /* SettingsWireframe.swift in Sources */,
