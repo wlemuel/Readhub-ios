@@ -11,6 +11,7 @@
 import RxCocoa
 import RxDataSources
 import RxSwift
+import SafariServices
 import UIKit
 
 final class SettingsViewController: UIViewController {
@@ -20,7 +21,7 @@ final class SettingsViewController: UIViewController {
 
     // MARK: - Private properties -
 
-    var tableview: UITableView!
+    private var tableview: UITableView!
 
     private let disposeBag = DisposeBag()
 
@@ -49,28 +50,50 @@ private extension SettingsViewController {
 
     func setupLayout() {
         title = "设置"
-        
+
         tableview = UITableView(frame: view.frame, style: .plain).then {
             $0.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         }
 
         view.addSubview(tableview)
+    }
 
+    func setupRx() {
         let items = Observable.just([
-            SectionModel(model: "设置", items: ["触感反馈"]),
-            SectionModel(model: "反馈", items: ["反馈", "邮件", "Telegram"]),
-            SectionModel(model: "关于", items: ["好评鼓励", "分享给朋友", "作者 GitHub"]),
-            SectionModel(model: "支持作者", items: ["😄 $0.99 - Buy me a cup of coffee"]),
+            SectionModel(model: "联系", items: [
+                SettingModel(type: .url, name: "反馈", url: kFeedbackUrl),
+//                SettingModel(type: .plain, name: "邮件", descr: "wlemuel@hotmail.com"),
+                SettingModel(type: .plainUrl, name: "Telegram", descr: kTelegramUrl, url: kTelegramUrl),
+            ]),
+            SectionModel(model: "关于", items: [
+//                SettingModel(type: .url, name: "好评鼓励", url: ""),
+                SettingModel(type: .url, name: "作者 GitHub", url: kAuthorUrl),
+            ]),
+//            SectionModel(model: "支持作者", items: [
+//                SettingModel(type: .support, name: "😄 $0.99 - Buy me a cup of coffee"),
+//            ]),
         ])
 
         // 创建数据源
         let dataSource = RxTableViewSectionedReloadDataSource
-        <SectionModel<String, String>>(configureCell: {
-            _, tv, _, element in
-            let cell = tv.dequeueReusableCell(withIdentifier: "Cell")!
-            cell.textLabel?.text = "\(element)"
-            cell.accessoryType = .disclosureIndicator
-            return cell
+        <SectionModel<String, SettingModel>>(configureCell: {
+            _, tv, _, model in
+            var cell = tv.dequeueReusableCell(withIdentifier: "Cell")
+
+            switch model.type {
+            case .url, .support:
+                cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
+                cell?.accessoryType = .disclosureIndicator
+            case .plain, .plainUrl:
+                cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
+                cell?.detailTextLabel?.text = model.descr
+                cell?.detailTextLabel?.adjustsFontSizeToFitWidth = true
+            }
+
+            cell?.selectionStyle = .none
+            cell?.textLabel?.text = model.name
+
+            return cell!
         })
 
         dataSource.titleForHeaderInSection = { ds, index in
@@ -81,8 +104,26 @@ private extension SettingsViewController {
         items
             .bind(to: tableview.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+
+        tableview.rx.modelSelected(SettingModel.self)
+            .subscribe(onNext: { [weak self] model in
+                guard let `self` = self else { return }
+
+                switch model.type {
+                case .url, .plainUrl:
+                    self.gotoUrl(rawUrl: model.url)
+                default: break
+                }
+            }).disposed(by: disposeBag)
     }
 
-    func setupRx() {
+    func gotoUrl(rawUrl: String) {
+        if let url = URL(string: rawUrl) {
+            let safariConfig = SFSafariViewController.Configuration()
+            safariConfig.entersReaderIfAvailable = false
+
+            let safariVC = SFSafariViewController(url: url, configuration: safariConfig)
+            present(safariVC, animated: true, completion: nil)
+        }
     }
 }

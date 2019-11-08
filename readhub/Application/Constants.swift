@@ -87,5 +87,12 @@ func kLog<T>(_ message: T, file: String = #file, funcName: String = #function, l
 
 // MARK: - 文本提示
 
-let kmsgNoNetwork = "网络异常，请检查网络设置"
-let kmsgNoData = "暂无数据"
+let kMsgNoNetwork = "网络异常，请检查网络设置"
+let kMsgNoData = "暂无数据"
+
+
+// MARK: - 信息相关参数
+
+let kFeedbackUrl = "https://support.qq.com/product/97725"
+let kTelegramUrl = "https://t.me/readhubplus"
+let kAuthorUrl = "https://github.com/wlemuel"

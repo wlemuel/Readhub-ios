@@ -174,7 +174,7 @@ class NewsViewController: BaseViewController {
         endMjRefresh()
 
         let label = UILabel().then {
-            $0.text = kmsgNoNetwork
+            $0.text = kMsgNoNetwork
             $0.textColor = kThemeFont2Color
             $0.textAlignment = .center
         }
@@ -186,7 +186,7 @@ class NewsViewController: BaseViewController {
         endMjRefresh()
 
         let label = UILabel().then {
-            $0.text = kmsgNoData
+            $0.text = kMsgNoData
             $0.textColor = kThemeFont2Color
             $0.textAlignment = .center
         }
