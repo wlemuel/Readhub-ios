@@ -84,7 +84,7 @@ class NewsViewController: BaseViewController {
 
             $0.layer.masksToBounds = false
             $0.layer.cornerRadius = Metrics.notifyHeight / 2
-            $0.layer.shadowColor = kThemeFont2Color.cgColor
+            $0.layer.shadowColor = kThemeFont3Color.cgColor
             $0.layer.shadowOpacity = 1
             $0.layer.shadowOffset = CGSize(width: 0, height: 3)
         }

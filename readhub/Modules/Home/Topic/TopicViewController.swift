@@ -82,7 +82,7 @@ class TopicViewController: BaseViewController {
 
             $0.layer.masksToBounds = false
             $0.layer.cornerRadius = Metrics.notifyHeight / 2
-            $0.layer.shadowColor = kThemeFont2Color.cgColor
+            $0.layer.shadowColor = kThemeFont3Color.cgColor
             $0.layer.shadowOpacity = 1
             $0.layer.shadowOffset = CGSize(width: 0, height: 3)
         }
@@ -150,7 +150,7 @@ class TopicViewController: BaseViewController {
             .startWith(())
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
-                
+
                 self.hideNotify()
 
                 self.presenter.getTopicList(lastCursor: "", true)
@@ -174,6 +174,19 @@ class TopicViewController: BaseViewController {
                 guard let `self` = self else { return }
 
                 self.presenter.toggleTopicCellAt(index: indexPath.row)
+
+            }).disposed(by: disposeBag)
+
+        // setup notify view
+        notifyView.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let `self` = self else { return }
+
+                self.hideNotify()
+
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+
+                self.presenter.getTopicList(lastCursor: "", true)
 
             }).disposed(by: disposeBag)
     }
