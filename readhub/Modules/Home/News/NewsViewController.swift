@@ -205,16 +205,16 @@ class NewsViewController: BaseViewController {
                 }
             }).disposed(by: disposeBag)
 
-        tableView.rx.contentOffset
-            .map { $0.y }
-            .subscribe(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
-
-                if self.isNotifying {
-                    self.hideNotify()
-                }
-
-            }).disposed(by: disposeBag)
+//        tableView.rx.contentOffset
+//            .map { $0.y }
+//            .subscribe(onNext: { [weak self] _ in
+//                guard let `self` = self else { return }
+//
+//                if self.isNotifying {
+//                    self.hideNotify()
+//                }
+//
+//            }).disposed(by: disposeBag)
 
         // setup notify view
         notifyView.rx.tap
