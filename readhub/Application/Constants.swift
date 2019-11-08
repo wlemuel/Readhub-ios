@@ -52,8 +52,8 @@ func kColor(light: UIColor, dark: UIColor) -> UIColor {
 
 // MARK: - 系统配色 (light/dark mode)
 
-let kThemePrimaryColor = kColor(light: UIColor.hexColor(0x2AB3C4), dark: UIColor.hexColor(0xBA4A21))
-let kThemeSecondaryColor = kColor(light: UIColor.hexColor(0x55939C), dark: UIColor.hexColor(0xFBBB02))
+let kThemePrimaryColor = kColor(light: UIColor.hexColor(0x2AB3C4), dark: UIColor.hexColor(0xD54C3B))
+let kThemeSecondaryColor = kColor(light: UIColor.hexColor(0x55939C), dark: UIColor.hexColor(0xC47432))
 
 let kThemeBaseColor = kColor(light: UIColor.hexColor(0xEEEEEE), dark: UIColor.hexColor(0x111111))
 let kThemeBase2Color = kColor(light: UIColor.hexColor(0xF7F7F7), dark: UIColor.hexColor(0x080808))

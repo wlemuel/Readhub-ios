@@ -12,14 +12,6 @@ import RxCocoa
 import RxSwift
 import SafariServices
 
-enum NewsType {
-    case topic
-    case news
-    case technews
-    case blockchain
-    case all
-}
-
 fileprivate struct Metrics {
     static let cellHeight: CGFloat = 150.0
 }
@@ -179,29 +171,29 @@ class NewsViewController: BaseViewController {
     }
 
     private func showNetworkErrorView() {
-        self.endMjRefresh()
-        
+        endMjRefresh()
+
         let label = UILabel().then {
             $0.text = kmsgNoNetwork
             $0.textColor = kThemeFont2Color
             $0.textAlignment = .center
         }
-        
+
         tableView?.backgroundView = label
     }
 
     private func showEmptyView() {
-        self.endMjRefresh()
-        
+        endMjRefresh()
+
         let label = UILabel().then {
             $0.text = kmsgNoData
             $0.textColor = kThemeFont2Color
             $0.textAlignment = .center
         }
-        
+
         tableView?.backgroundView = label
     }
-    
+
     private func endMjRefresh() {
         tableView?.mj_header.endRefreshing()
         tableView?.mj_footer.endRefreshing()

@@ -38,6 +38,14 @@ enum ReadhubApiError {
     case serverFailed(newsType: NewsType)
 }
 
+enum NewsType {
+    case topic
+    case news
+    case technews
+    case blockchain
+    case all
+}
+
 extension ReadhubApi: TargetType {
     var baseURL: URL {
         return URL(string: "https://api.readhub.cn")!
