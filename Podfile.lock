@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.0.0-rc.2)
+  - Differentiator (4.0.1)
   - MJRefresh (3.2.0)
   - Moya/Core (14.0.0-beta.4):
     - Alamofire (= 5.0.0-rc.2)
@@ -16,6 +17,10 @@ PODS:
   - RxCocoa (5.0.0):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
   - RxGesture (3.0.1):
     - RxCocoa (~> 5.0)
     - RxSwift (~> 5.0)
@@ -33,6 +38,7 @@ DEPENDENCIES:
   - "NSObject+Rx"
   - Reusable (~> 4.1)
   - RxCocoa (~> 5.0)
+  - RxDataSources (~> 4.0)
   - RxGesture
   - RxSwift (~> 5.0)
   - SnapKit (~> 5.0)
@@ -43,11 +49,13 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Differentiator
     - MJRefresh
     - Moya
     - "NSObject+Rx"
     - Reusable
     - RxCocoa
+    - RxDataSources
     - RxGesture
     - RxRelay
     - RxSwift
@@ -58,11 +66,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
   Moya: 53fa45a72929809e0b8bba44a0a53d8d0827bcfe
   "NSObject+Rx": 2eb2cf51fd1c554118449a7fbc36e4cd620b9e94
   Reusable: 82be188f29d96dc5eff0db7b2393bcc08d2cdd5b
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxGesture: a3f8dd6adf078110ed5e1c9c30d09d705a09852e
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
@@ -71,6 +81,6 @@ SPEC CHECKSUMS:
   Then: 90cd104fd951cec1980a03f57704ad8f784d4d79
   TYPagerController: 262556ecef99986d26ed77fb1288a198ed42f4af
 
-PODFILE CHECKSUM: e35a9445461d2db68f399238fbc2a75d9a841bb0
+PODFILE CHECKSUM: 1d65c396184546c324becfaa7e494fc573a5e896
 
 COCOAPODS: 1.8.4
