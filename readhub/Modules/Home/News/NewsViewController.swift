@@ -173,6 +173,8 @@ class NewsViewController: BaseViewController {
             .startWith(())
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
+                
+                self.hideNotify()
 
                 switch self.newsType {
                 case .news:
@@ -291,6 +293,10 @@ class NewsViewController: BaseViewController {
     }
 
     private func hideNotify() {
+        if !isNotifying {
+            return
+        }
+
         NSObject.cancelPreviousPerformRequests(withTarget: self)
 
         UIView.animate(withDuration: 0.33, animations: {

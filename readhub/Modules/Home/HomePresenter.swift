@@ -151,7 +151,10 @@ extension HomePresenter: HomePresenterInterface {
         timer = Observable<Int>.interval(.seconds(5 * 60), scheduler: SerialDispatchQueueScheduler(qos: .default)).subscribe { [weak self] _ in
             guard let `self` = self else { return }
 
+            self.checkTopics()
             self.checkNews()
+            self.checkTechnews()
+            self.checkBlockchains()
         }
 
         timer?.disposed(by: disposeBag)
@@ -161,6 +164,20 @@ extension HomePresenter: HomePresenterInterface {
         timer?.dispose()
     }
 
+    private func checkTopics() {
+        interactor.getTopicList(lastCursor: "", pageSize: 1)
+            .subscribe(onSuccess: { [weak self] topicData in
+                guard let `self` = self else { return }
+
+                if let topicList = topicData.data {
+                    if self.topics.value.count > 0 && topicList.count > 0 &&
+                        self.topics.value[0].id != topicList[0].id {
+                        self.notifies.onNext(.topic)
+                    }
+                }
+            }).disposed(by: disposeBag)
+    }
+
     private func checkNews() {
         interactor.getNewsList(lastCursor: "", pageSize: 1)
             .subscribe(onSuccess: { [weak self] newsData in
@@ -168,7 +185,7 @@ extension HomePresenter: HomePresenterInterface {
 
                 // check whether there are news updated
                 if let newsList = newsData.data {
-                    if self.news.value.count > 0 &&
+                    if self.news.value.count > 0 && newsList.count > 0 &&
                         self.news.value[0].id != newsList[0].id {
                         self.notifies.onNext(.news)
                     }
@@ -183,7 +200,7 @@ extension HomePresenter: HomePresenterInterface {
 
                 // check whether there are news updated
                 if let newsList = newsData.data {
-                    if self.technews.value.count > 0 &&
+                    if self.technews.value.count > 0 && newsList.count > 0 &&
                         self.technews.value[0].id != newsList[0].id {
                         self.notifies.onNext(.technews)
                     }
@@ -197,7 +214,7 @@ extension HomePresenter: HomePresenterInterface {
                 guard let `self` = self else { return }
 
                 if let newsList = newsData.data {
-                    if self.blockchains.value.count > 0 &&
+                    if self.blockchains.value.count > 0 && newsList.count > 0 &&
                         self.blockchains.value[0].id != newsList[0].id {
                         self.notifies.onNext(.blockchain)
                     }

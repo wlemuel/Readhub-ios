@@ -68,6 +68,7 @@ private extension SettingsViewController {
             SectionModel(model: "关于", items: [
 //                SettingModel(type: .url, name: "好评鼓励", url: ""),
                 SettingModel(type: .url, name: "作者 GitHub", url: kAuthorUrl),
+                SettingModel(type: .plain, name: "版本号", descr: getVersion()),
             ]),
 //            SectionModel(model: "支持作者", items: [
 //                SettingModel(type: .support, name: "😄 $0.99 - Buy me a cup of coffee"),
@@ -125,5 +126,21 @@ private extension SettingsViewController {
             let safariVC = SFSafariViewController(url: url, configuration: safariConfig)
             present(safariVC, animated: true, completion: nil)
         }
+    }
+
+    func getVersion() -> String {
+        let infoDictionary = Bundle.main.infoDictionary
+//        let appDisplayName = infoDictionary?["CFBundleDisplayName"] as! String
+//        let minorVersion = infoDictionary?["CFBundleVersion"] as! String
+        let majorVersion = infoDictionary?["CFBundleShortVersionString"] as! String
+
+        // Device Info
+//        let iosVersion : NSString = UIDevice.currentDevice().systemVersion //ios版本
+//        let identifierNumber = UIDevice.currentDevice().identifierForVendor //设备udid
+//        let systemName = UIDevice.currentDevice().systemName //设备名称
+//        let model = UIDevice.currentDevice().model //设备型号
+//        let localizedModel = UIDevice.currentDevice().localizedModel //设备区域化型号如A1533
+
+        return majorVersion
     }
 }

@@ -14,21 +14,30 @@ import UIKit
 
 fileprivate struct Metrics {
     static let cellHeight: CGFloat = 300.0
+
+    static let notifyHeight: CGFloat = 40.0
+    static let notifyWidth: CGFloat = 150.0
+    static let notifyFontSize: CGFloat = 13.0
 }
 
 class TopicViewController: BaseViewController {
     // MARK: Private properties -
 
     private var tableView: UITableView!
+    private var notifyView: UIButton!
+
     private var presenter: HomePresenterInterface!
 
     private var dataDriver: Driver<[TopicItemModel]>!
     private var errorDriver: Driver<ReadhubApiError>!
+    private var notifyDriver: Driver<NewsType>!
+
     private var lastCursor: String = ""
 
     private let disposeBag = DisposeBag()
 
     private let cellId = "TopicCell"
+    private var isNotifying = false
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -63,6 +72,20 @@ class TopicViewController: BaseViewController {
 
         tableView?.mj_header = MJRefreshNormalHeader()
         tableView?.mj_footer = MJRefreshBackNormalFooter()
+
+        // setup notify view
+        notifyView = UIButton().then {
+            $0.backgroundColor = kThemePrimaryColor
+            $0.setTitle("", for: .normal)
+            $0.setTitleColor(kThemeBase2Color, for: .normal)
+            $0.titleLabel?.font = UIFont.systemFont(ofSize: Metrics.notifyFontSize)
+
+            $0.layer.masksToBounds = false
+            $0.layer.cornerRadius = Metrics.notifyHeight / 2
+            $0.layer.shadowColor = kThemeFont2Color.cgColor
+            $0.layer.shadowOpacity = 1
+            $0.layer.shadowOffset = CGSize(width: 0, height: 3)
+        }
     }
 
     private func setupRx() {
@@ -110,11 +133,25 @@ class TopicViewController: BaseViewController {
 
             }).disposed(by: disposeBag)
 
+        // notify handler
+        notifyDriver = presenter.notifies.asDriver(onErrorJustReturn: .unknown)
+
+        notifyDriver.asObservable()
+            .subscribe(onNext: { [weak self] newsType in
+                guard let `self` = self else { return }
+
+                if newsType == .topic {
+                    self.showNotify()
+                }
+            }).disposed(by: disposeBag)
+
         // setup tableview
         tableView?.mj_header.rx.refreshing
             .startWith(())
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
+                
+                self.hideNotify()
 
                 self.presenter.getTopicList(lastCursor: "", true)
             }).disposed(by: disposeBag)
@@ -168,5 +205,43 @@ class TopicViewController: BaseViewController {
     private func endMjRefresh() {
         tableView?.mj_header.endRefreshing()
         tableView?.mj_footer.endRefreshing()
+    }
+
+    private func showNotify() {
+        if isNotifying {
+            return
+        }
+
+        isNotifying = true
+
+        notifyView.alpha = 0
+        notifyView.setTitle("有新话题，点击查看", for: .normal)
+
+        view.addSubview(notifyView)
+        notifyView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(kMargin3)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(Metrics.notifyHeight)
+            make.width.equalTo(Metrics.notifyWidth)
+        }
+
+        UIView.animate(withDuration: 0.33, animations: {
+            self.notifyView.alpha = 1.0
+        })
+    }
+
+    private func hideNotify() {
+        if !isNotifying {
+            return
+        }
+
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
+
+        UIView.animate(withDuration: 0.33, animations: {
+            self.notifyView.alpha = 0.0
+        }, completion: { _ in
+            self.notifyView.removeFromSuperview()
+            self.isNotifying = false
+        })
     }
 }
