@@ -148,7 +148,7 @@ extension HomePresenter: HomePresenterInterface {
     }
 
     func startUpdateCheck() {
-        timer = Observable<Int>.interval(.seconds(5 * 60), scheduler: SerialDispatchQueueScheduler(qos: .default)).subscribe { [weak self] _ in
+        timer = Observable<Int>.interval(.seconds(10 * 60), scheduler: SerialDispatchQueueScheduler(qos: .default)).subscribe { [weak self] _ in
             guard let `self` = self else { return }
 
             self.checkTopics()
