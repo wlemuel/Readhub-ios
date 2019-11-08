@@ -112,13 +112,18 @@ extension HomePresenter: HomePresenterInterface {
 
     func getTechnewsList(lastCursor: String, _ refresh: Bool) {
         interactor.getTechnewsList(lastCursor: lastCursor, pageSize: 20)
-            .subscribe(onSuccess: { [weak self] technewsList in
+            .subscribe(onSuccess: { [weak self] newsData in
                 guard let `self` = self else { return }
 
+                guard let newsList = newsData.data else {
+                    self.errors.onNext(.noData(newsType: .technews))
+                    return
+                }
+
                 if refresh {
-                    self.technews.accept(technewsList.data ?? [])
+                    self.technews.accept(newsList)
                 } else {
-                    self.technews.accept(self.technews.value + (technewsList.data ?? []))
+                    self.technews.accept(self.technews.value + newsList)
                 }
 
             }) { [weak self] error in
@@ -131,13 +136,18 @@ extension HomePresenter: HomePresenterInterface {
 
     func getBlockchainList(lastCursor: String, _ refresh: Bool) {
         interactor.getBlockchainList(lastCursor: lastCursor, pageSize: 20)
-            .subscribe(onSuccess: { [weak self] blockchainList in
+            .subscribe(onSuccess: { [weak self] newsData in
                 guard let `self` = self else { return }
 
+                guard let newsList = newsData.data else {
+                    self.errors.onNext(.noData(newsType: .blockchain))
+                    return
+                }
+
                 if refresh {
-                    self.blockchains.accept(blockchainList.data ?? [])
+                    self.blockchains.accept(newsList)
                 } else {
-                    self.blockchains.accept(self.blockchains.value + (blockchainList.data ?? []))
+                    self.blockchains.accept(self.blockchains.value + newsList)
                 }
             }) { [weak self] error in
                 guard let `self` = self else { return }
