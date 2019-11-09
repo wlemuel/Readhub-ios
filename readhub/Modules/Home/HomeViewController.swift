@@ -20,6 +20,8 @@ fileprivate struct Metric {
     static let pagerBarHeight: CGFloat = 40.0
 
     static let logoFontSize: CGFloat = 25.0
+    
+    static let iconFontSize: CGFloat = 25.0
 }
 
 final class HomeViewController: BaseViewController {
@@ -93,8 +95,17 @@ private extension HomeViewController {
         }
 
         navigationItem.leftBarButtonItem = logo
-
-        let settings = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(gotoSettings))
+        
+        let settings = UIBarButtonItem(title: "\u{ebaf}", style: .plain, target: self, action: #selector(gotoSettings)).then {
+            let attributes = [
+                NSAttributedString.Key.foregroundColor: kThemePrimaryColor,
+                NSAttributedString.Key.font: UIFont.init(name: "iconFont", size: Metric.iconFontSize),
+            ]
+            $0.setTitleTextAttributes(attributes as [NSAttributedString.Key : Any], for: .normal)
+            $0.setTitleTextAttributes(attributes as [NSAttributedString.Key : Any], for: .selected)
+        }
+        
+        
         navigationItem.rightBarButtonItem = settings
     }
 

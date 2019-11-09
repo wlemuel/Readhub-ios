@@ -16,7 +16,7 @@ fileprivate struct Metrics {
     static let cellHeight: CGFloat = 150.0
 
     static let notifyHeight: CGFloat = 40.0
-    static let notifyWidth: CGFloat = 150.0
+    static let notifyWidth: CGFloat = 180.0
     static let notifyFontSize: CGFloat = 13.0
 }
 
@@ -81,12 +81,25 @@ class NewsViewController: BaseViewController {
             $0.setTitle("", for: .normal)
             $0.setTitleColor(kThemeBase2Color, for: .normal)
             $0.titleLabel?.font = UIFont.systemFont(ofSize: Metrics.notifyFontSize)
+            $0.contentHorizontalAlignment = .left
+            $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: Metrics.notifyHeight, bottom: 0, right: 0)
 
             $0.layer.masksToBounds = false
             $0.layer.cornerRadius = Metrics.notifyHeight / 2
             $0.layer.shadowColor = kThemeFont3Color.cgColor
             $0.layer.shadowOpacity = 1
             $0.layer.shadowOffset = CGSize(width: 0, height: 3)
+
+            let icon = UILabel().then {
+                $0.font = UIFont(name: "iconFont", size: Metrics.notifyFontSize)
+                $0.text = "\u{eb99}"
+                $0.textColor = kThemeBase2Color
+            }
+            $0.addSubview(icon)
+            icon.snp.makeConstraints { make in
+                make.centerY.equalToSuperview()
+                make.left.equalToSuperview().offset(Metrics.notifyHeight / 2)
+            }
         }
     }
 
@@ -173,7 +186,7 @@ class NewsViewController: BaseViewController {
             .startWith(())
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
-                
+
                 self.hideNotify()
 
                 switch self.newsType {
@@ -227,14 +240,16 @@ class NewsViewController: BaseViewController {
 
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
 
-                switch self.newsType {
-                case .news:
-                    self.presenter.getNewsList(lastCursor: "", true)
-                case .technews:
-                    self.presenter.getTechnewsList(lastCursor: "", true)
-                case .blockchain:
-                    self.presenter.getBlockchainList(lastCursor: "", true)
-                default: break
+                ViewUtils.delay(0.3) {
+                    switch self.newsType {
+                    case .news:
+                        self.presenter.getNewsList(lastCursor: "", true)
+                    case .technews:
+                        self.presenter.getTechnewsList(lastCursor: "", true)
+                    case .blockchain:
+                        self.presenter.getBlockchainList(lastCursor: "", true)
+                    default: break
+                    }
                 }
 
             }).disposed(by: disposeBag)

@@ -67,7 +67,7 @@ private extension SettingsViewController {
             ]),
             SectionModel(model: "关于", items: [
 //                SettingModel(type: .url, name: "好评鼓励", url: ""),
-                SettingModel(type: .url, name: "作者 GitHub", url: kAuthorUrl),
+                SettingModel(type: .url, name: "项目 GitHub", url: kProjectUrl),
                 SettingModel(type: .plain, name: "版本号", descr: getVersion()),
             ]),
 //            SectionModel(model: "支持作者", items: [
