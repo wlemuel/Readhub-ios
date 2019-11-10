@@ -1,7 +1,7 @@
 Readhub+
 =====
 
-![Swift](https://img.shields.io/badge/Swift-5-orange.svg)![RxSwift](https://img.shields.io/badge/RxSwift-5.0-green.svg)![Viper](https://img.shields.io/badge/Viper-architecture-blue.svg)
+![Swift](https://img.shields.io/badge/Swift-5-orange.svg) ![RxSwift](https://img.shields.io/badge/RxSwift-5.0-green.svg) ![Viper](https://img.shields.io/badge/Viper-architecture-blue.svg)
 
 Readhub+ is a third-part iOS client for [Readhub](https://readhub.cn/). It is developed using RxSwift and Viper architecture. 😄
 
