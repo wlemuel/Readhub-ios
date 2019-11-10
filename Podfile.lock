@@ -14,6 +14,7 @@ PODS:
     - Reusable/View (= 4.1.0)
   - Reusable/Storyboard (4.1.0)
   - Reusable/View (4.1.0)
+  - Reveal-SDK (24)
   - RxCocoa (5.0.0):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - Moya/RxSwift (~> 14.0.0-alpha.2)
   - "NSObject+Rx"
   - Reusable (~> 4.1)
+  - Reveal-SDK
   - RxCocoa (~> 5.0)
   - RxDataSources (~> 4.0)
   - RxGesture
@@ -54,6 +56,7 @@ SPEC REPOS:
     - Moya
     - "NSObject+Rx"
     - Reusable
+    - Reveal-SDK
     - RxCocoa
     - RxDataSources
     - RxGesture
@@ -71,6 +74,7 @@ SPEC CHECKSUMS:
   Moya: 53fa45a72929809e0b8bba44a0a53d8d0827bcfe
   "NSObject+Rx": 2eb2cf51fd1c554118449a7fbc36e4cd620b9e94
   Reusable: 82be188f29d96dc5eff0db7b2393bcc08d2cdd5b
+  Reveal-SDK: 5d7e56b8f018c0a88b3a2c10bf68d598bbd3b071
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxGesture: a3f8dd6adf078110ed5e1c9c30d09d705a09852e
@@ -81,6 +85,6 @@ SPEC CHECKSUMS:
   Then: 90cd104fd951cec1980a03f57704ad8f784d4d79
   TYPagerController: 262556ecef99986d26ed77fb1288a198ed42f4af
 
-PODFILE CHECKSUM: 1d65c396184546c324becfaa7e494fc573a5e896
+PODFILE CHECKSUM: 9d154359d31184b3ae7b0b64209227f691f1471e
 
 COCOAPODS: 1.8.4

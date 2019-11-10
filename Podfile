@@ -26,6 +26,9 @@ target 'readhub' do
   pod 'Then', '~> 2.6'
   pod 'SwiftDate', '~> 6.1'
 
+  # Debug
+  pod 'Reveal-SDK', :configurations => ['Debug']
+
   target 'readhubTests' do
     inherit! :search_paths
     # Pods for testing
