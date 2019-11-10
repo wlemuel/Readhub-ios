@@ -10,7 +10,6 @@ import Foundation
 import MJRefresh
 import RxCocoa
 import RxSwift
-import SafariServices
 
 fileprivate struct Metrics {
     static let cellHeight: CGFloat = 150.0
@@ -175,13 +174,8 @@ class NewsViewController: BaseViewController {
         tableView?.rx.modelSelected(NewsItemModel.self).subscribe(onNext: { [weak self] model in
             guard let `self` = self else { return }
 
-            if let url = URL(string: model.mobileUrl ?? "") {
-                let safariConfig = SFSafariViewController.Configuration()
-                safariConfig.entersReaderIfAvailable = true
+            ViewUtils.gotoUrl(viewcontroller: self, rawUrl: model.mobileUrl ?? "", enterReader: true)
 
-                let safariVC = SFSafariViewController(url: url, configuration: safariConfig)
-                self.present(safariVC, animated: true, completion: nil)
-            }
         }).disposed(by: disposeBag)
 
         tableView?.mj_header.rx.refreshing

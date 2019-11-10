@@ -10,7 +10,6 @@ import Foundation
 import NSObject_Rx
 import RxCocoa
 import RxSwift
-import SafariServices
 import SnapKit
 import Then
 import UIKit
@@ -132,17 +131,8 @@ class TopicTableViewCell: UITableViewCell {
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
 
-                if self.topicId == "" {
-                    return
-                }
-
-                if let url = URL(string: "https://readhub.cn/topic/\(self.topicId)"), let topicViewController = self.parentViewController as? TopicViewController {
-                    let safariConfig = SFSafariViewController.Configuration()
-                    safariConfig.entersReaderIfAvailable = false
-
-                    let safariVC = SFSafariViewController(url: url, configuration: safariConfig)
-
-                    topicViewController.present(safariVC, animated: true, completion: nil)
+                if self.topicId != "", let topicViewController = self.parentViewController as? TopicViewController {
+                    ViewUtils.gotoUrl(viewcontroller: topicViewController, rawUrl: "https://readhub.cn/topic/\(self.topicId)")
                 }
 
             }).disposed(by: rx.disposeBag)
@@ -156,13 +146,8 @@ class TopicTableViewCell: UITableViewCell {
             .subscribe(onNext: { [weak self] model in
                 guard let `self` = self else { return }
 
-                if let url = URL(string: model.mobileUrl ?? ""), let topicViewController = self.parentViewController as? TopicViewController {
-                    let safariConfig = SFSafariViewController.Configuration()
-                    safariConfig.entersReaderIfAvailable = true
-
-                    let safariVC = SFSafariViewController(url: url, configuration: safariConfig)
-
-                    topicViewController.present(safariVC, animated: true, completion: nil)
+                if let topicViewController = self.parentViewController as? TopicViewController {
+                    ViewUtils.gotoUrl(viewcontroller: topicViewController, rawUrl: model.mobileUrl ?? "", enterReader: true)
                 }
             }).disposed(by: rx.disposeBag)
     }

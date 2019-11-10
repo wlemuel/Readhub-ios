@@ -11,7 +11,6 @@
 import RxCocoa
 import RxDataSources
 import RxSwift
-import SafariServices
 import UIKit
 
 final class SettingsViewController: UIViewController {
@@ -49,6 +48,8 @@ private extension SettingsViewController {
     }
 
     func setupLayout() {
+        navigationController?.navigationBar.tintColor = kThemePrimaryColor
+
         title = "设置"
 
         tableview = UITableView(frame: view.frame, style: .plain).then {
@@ -111,20 +112,10 @@ private extension SettingsViewController {
 
                 switch model.type {
                 case .url, .plainUrl:
-                    self.gotoUrl(rawUrl: model.url)
+                    ViewUtils.gotoUrl(viewcontroller: self, rawUrl: model.url)
                 default: break
                 }
             }).disposed(by: disposeBag)
-    }
-
-    func gotoUrl(rawUrl: String) {
-        if let url = URL(string: rawUrl) {
-            let safariConfig = SFSafariViewController.Configuration()
-            safariConfig.entersReaderIfAvailable = false
-
-            let safariVC = SFSafariViewController(url: url, configuration: safariConfig)
-            present(safariVC, animated: true, completion: nil)
-        }
     }
 
     func getVersion() -> String {
