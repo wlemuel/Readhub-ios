@@ -1,3 +1,7 @@
+<p align="center">
+  <img height="160" src="https://user-images.githubusercontent.com/1510976/68539218-f3f5e400-03ba-11ea-85d7-9ce2792a9c4d.png" />
+</p>
+
 Readhub+
 =====
 
