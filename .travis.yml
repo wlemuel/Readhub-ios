@@ -3,7 +3,7 @@ osx_image: xcode11.2
 
 xcode_workspace: readhub.xcworkspace
 xcode_scheme: readhub
-xcode_destination: platform=iOS Simulator,OS=13.2,name=iPhone X
+xcode_destination: platform=iOS Simulator,OS=13.2,name=iPhone 11 Pro
 
 cache:
   - cocoapods
