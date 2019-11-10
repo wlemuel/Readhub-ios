@@ -22,7 +22,7 @@ Features
 
 - Using [RxSwift](http://community.rxswift.org/)
 - Using [Viper](https://github.com/infinum/iOS-VIPER-Xcode-Templates)
-- Read topcs, hot news, tech news and blockchain news.
+- Reading topcs, hot news, tech news and blockchain news.
 
 Appendix
 --------
