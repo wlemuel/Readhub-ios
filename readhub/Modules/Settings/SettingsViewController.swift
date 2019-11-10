@@ -62,7 +62,6 @@ private extension SettingsViewController {
         let items = Observable.just([
             SectionModel(model: "联系", items: [
                 SettingModel(type: .url, name: "反馈", url: kFeedbackUrl),
-//                SettingModel(type: .plain, name: "邮件", descr: "wlemuel@hotmail.com"),
                 SettingModel(type: .plainUrl, name: "Telegram", descr: kTelegramUrl, url: kTelegramUrl),
             ]),
             SectionModel(model: "关于", items: [

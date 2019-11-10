@@ -89,6 +89,7 @@ func kLog<T>(_ message: T, file: String = #file, funcName: String = #function, l
 
 let kMsgNoNetwork = "网络异常，请检查网络设置"
 let kMsgNoData = "暂无数据"
+let kMsgLoading = "加载中 ..."
 
 
 // MARK: - 信息相关参数

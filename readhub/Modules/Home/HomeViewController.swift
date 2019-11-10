@@ -112,6 +112,7 @@ private extension HomeViewController {
     func setupPageController() {
         pageVC = TYTabPagerController().then {
             $0.pagerController.layout.prefetchItemCount = 3
+            $0.pagerController.view.backgroundColor = kThemeBase2Color
             $0.tabBar.layout.cellWidth = kScreenW * 0.24
             $0.tabBar.layout.progressColor = kThemePrimaryColor
             $0.tabBar.layout.selectedTextColor = kThemePrimaryColor

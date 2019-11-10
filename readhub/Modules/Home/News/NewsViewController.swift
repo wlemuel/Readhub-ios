@@ -75,6 +75,8 @@ class NewsViewController: BaseViewController {
         tableView?.mj_header = MJRefreshNormalHeader()
         tableView?.mj_footer = MJRefreshBackNormalFooter()
 
+        showLoadingView()
+
         // setup notify view
         notifyView = UIButton().then {
             $0.backgroundColor = kThemePrimaryColor
@@ -88,7 +90,7 @@ class NewsViewController: BaseViewController {
             $0.layer.cornerRadius = Metrics.notifyHeight / 2
             $0.layer.shadowColor = kThemeFont3Color.cgColor
             $0.layer.shadowOpacity = 1
-            $0.layer.shadowOffset = CGSize(width: 0, height: 3)
+            $0.layer.shadowOffset = CGSize(width: 0, height: 2)
 
             let icon = UILabel().then {
                 $0.font = UIFont(name: "iconFont", size: Metrics.notifyFontSize)
@@ -258,20 +260,22 @@ class NewsViewController: BaseViewController {
     private func showNetworkErrorView() {
         endMjRefresh()
 
-        let label = UILabel().then {
-            $0.text = kMsgNoNetwork
-            $0.textColor = kThemeFont2Color
-            $0.textAlignment = .center
-        }
-
-        tableView?.backgroundView = label
+        showBgView(msg: kMsgNoNetwork)
     }
 
     private func showEmptyView() {
         endMjRefresh()
 
+        showBgView(msg: kMsgNoData)
+    }
+
+    private func showLoadingView() {
+        showBgView(msg: kMsgLoading)
+    }
+
+    private func showBgView(msg: String) {
         let label = UILabel().then {
-            $0.text = kMsgNoData
+            $0.text = msg
             $0.textColor = kThemeFont2Color
             $0.textAlignment = .center
         }
