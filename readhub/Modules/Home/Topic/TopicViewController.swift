@@ -79,7 +79,7 @@ class TopicViewController: BaseViewController {
         notifyView = UIButton().then {
             $0.backgroundColor = kThemePrimaryColor
             $0.setTitle("", for: .normal)
-            $0.setTitleColor(kThemeBase2Color, for: .normal)
+            $0.setTitleColor(UIColor.white, for: .normal)
             $0.titleLabel?.font = UIFont.systemFont(ofSize: Metrics.notifyFontSize)
             $0.contentHorizontalAlignment = .left
             $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: Metrics.notifyHeight, bottom: 0, right: 0)
@@ -93,7 +93,7 @@ class TopicViewController: BaseViewController {
             let icon = UILabel().then {
                 $0.font = UIFont(name: "iconFont", size: Metrics.notifyFontSize)
                 $0.text = "\u{eb99}"
-                $0.textColor = kThemeBase2Color
+                $0.textColor = UIColor.white
             }
             $0.addSubview(icon)
             icon.snp.makeConstraints { make in

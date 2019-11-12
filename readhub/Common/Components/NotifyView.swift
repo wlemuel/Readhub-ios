@@ -32,7 +32,7 @@ class NotifyView: UIView {
         msgLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: Metrics.msgFontSize)
             $0.text = ""
-            $0.textColor = kThemeBase2Color
+            $0.textColor = UIColor.white
         }
 
         addSubview(msgLabel)
