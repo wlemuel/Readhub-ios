@@ -18,10 +18,16 @@ struct ViewUtils {
 
     static func gotoUrl(viewcontroller: UIViewController, rawUrl: String, enterReader: Bool = false) {
         if let url = URL(string: rawUrl) {
-            let safariConfig = SFSafariViewController.Configuration()
-            safariConfig.entersReaderIfAvailable = enterReader
-
-            let safariVC = SFSafariViewController(url: url, configuration: safariConfig)
+            var safariVC: SFSafariViewController
+            
+            if #available(iOS 11.0, *) {
+                let safariConfig = SFSafariViewController.Configuration()
+                safariConfig.entersReaderIfAvailable = enterReader
+                safariVC = SFSafariViewController(url: url, configuration: safariConfig)
+            } else {
+                safariVC = SFSafariViewController(url: url, entersReaderIfAvailable: enterReader)
+            }
+            
             safariVC.preferredBarTintColor = kThemeBase2Color
             safariVC.preferredControlTintColor = kThemePrimaryColor
 
