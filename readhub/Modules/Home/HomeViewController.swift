@@ -133,9 +133,14 @@ private extension HomeViewController {
         let pageView = pageVC.view
 
         pageView?.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            if #available(iOS 11.0, *) {
+                make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+                make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            } else {
+                make.top.bottom.equalToSuperview()
+            }
+            
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
 
         pageVC.reloadData()

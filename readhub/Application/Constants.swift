@@ -41,12 +41,16 @@ func kRGBA(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) -> UIColor {
 }
 
 func kColor(light: UIColor, dark: UIColor) -> UIColor {
-    return UIColor { (trainCollection) -> UIColor in
-        if trainCollection.userInterfaceStyle == .dark {
-            return dark
-        } else {
-            return light
+    if #available(iOS 13.0, *) {
+        return UIColor { (trainCollection) -> UIColor in
+            if trainCollection.userInterfaceStyle == .dark {
+                return dark
+            } else {
+                return light
+            }
         }
+    } else {
+        return light
     }
 }
 
