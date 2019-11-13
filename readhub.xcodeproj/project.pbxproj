@@ -83,7 +83,7 @@
 		652DAF522375CA9800B65953 /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
 		652DAF55237655D800B65953 /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		653A11B6235F11F1008B4D5E /* TopicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicTableViewCell.swift; sourceTree = "<group>"; };
-		656534F323557D3C00840686 /* Readhub+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Readhub+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		656534F323557D3C00840686 /* Readhub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Readhub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		656534F623557D3C00840686 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		656534F823557D3C00840686 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		656534FF23557D4300840686 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -233,7 +233,7 @@
 		656534F423557D3C00840686 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				656534F323557D3C00840686 /* Readhub+.app */,
+				656534F323557D3C00840686 /* Readhub.app */,
 				6565350923557D4400840686 /* readhubTests.xctest */,
 				6565351423557D4400840686 /* readhubUITests.xctest */,
 			);
@@ -471,7 +471,7 @@
 			);
 			name = readhub;
 			productName = readhub;
-			productReference = 656534F323557D3C00840686 /* Readhub+.app */;
+			productReference = 656534F323557D3C00840686 /* Readhub.app */;
 			productType = "com.apple.product-type.application";
 		};
 		6565350823557D4400840686 /* readhubTests */ = {
@@ -893,8 +893,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wlemuel.readhub;
-				PRODUCT_NAME = "Readhub+";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wlemuel.readhub.plus;
+				PRODUCT_NAME = Readhub;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -915,8 +915,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wlemuel.readhub;
-				PRODUCT_NAME = "Readhub+";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wlemuel.readhub.plus;
+				PRODUCT_NAME = Readhub;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
