@@ -33,6 +33,8 @@ class TopicViewController: BaseViewController {
     private var notifyDriver: Driver<NewsType>!
 
     private var lastCursor: String = ""
+    private var lastReadMark: String = ""
+    private var tempReadMark: String = ""
 
     private let disposeBag = DisposeBag()
 
@@ -72,7 +74,7 @@ class TopicViewController: BaseViewController {
 
         tableView?.mj_header = MJRefreshNormalHeader()
         tableView?.mj_footer = MJRefreshBackNormalFooter()
-        
+
         showLoadingView()
 
         // setup notify view
@@ -107,7 +109,7 @@ class TopicViewController: BaseViewController {
         dataDriver = presenter.topics.asDriver()
 
         dataDriver.drive(tableView!.rx.items(cellIdentifier: cellId, cellType: TopicTableViewCell.self)) { _, model, cell in
-            cell.setValueForCell(model: model)
+            cell.setValueForCell(model: model, showReadMark: model.id == self.lastReadMark)
         }.disposed(by: disposeBag)
 
         dataDriver.map { _ in true }
@@ -120,12 +122,14 @@ class TopicViewController: BaseViewController {
 
         // update lastcursor
         dataDriver.filter { $0.count > 0 }
-            .map { $0.last }
+            .map { ($0.first, $0.last) }
             .asObservable()
-            .subscribe(onNext: { [weak self] item in
-                guard let `self` = self else { return }
+            .subscribe(onNext: { [weak self] pair in
+                guard let `self` = self, let first = pair.0, let last = pair.1,
+                    let firstId = first.id else { return }
 
-                self.lastCursor = String(item!.order!)
+                self.lastCursor = String(last.order!)
+                self.tempReadMark = firstId
             }).disposed(by: disposeBag)
 
         errorDriver = presenter.errors.asDriver(onErrorJustReturn: .serverFailed(newsType: .unknown))
@@ -198,6 +202,8 @@ class TopicViewController: BaseViewController {
                 guard let `self` = self else { return }
 
                 self.hideNotify()
+
+                self.lastReadMark = self.tempReadMark
 
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
 

@@ -33,6 +33,8 @@ class NewsViewController: BaseViewController {
     private var notifyDriver: Driver<NewsType>!
 
     private var lastCursor: String = ""
+    private var lastReadMark: Int = 0
+    private var tempReadMark: Int = 0
 
     private let disposeBag = DisposeBag()
     private let cellId = "NewsCell"
@@ -117,7 +119,7 @@ class NewsViewController: BaseViewController {
         }
 
         dataDriver.drive(tableView!.rx.items(cellIdentifier: cellId, cellType: NewsTableViewCell.self)) { _, model, cell in
-            cell.setValueForCell(model: model)
+            cell.setValueForCell(model: model, showReadMark: model.id == self.lastReadMark)
         }.disposed(by: disposeBag)
 
         dataDriver.map { _ in true }
@@ -130,12 +132,14 @@ class NewsViewController: BaseViewController {
 
         // update lastcursor
         dataDriver.filter { $0.count > 0 }
-            .map { $0.last }
+            .map { ($0.first, $0.last) }
             .asObservable()
-            .subscribe(onNext: { [weak self] item in
-                guard let `self` = self else { return }
+            .subscribe(onNext: { [weak self] pair in
+                guard let `self` = self, let first = pair.0, let last = pair.1,
+                    let firstId = first.id else { return }
 
-                self.lastCursor = item?.publishDate?.toUnixMillTime() ?? ""
+                self.lastCursor = last.publishDate?.toUnixMillTime() ?? ""
+                self.tempReadMark = firstId
             }).disposed(by: disposeBag)
 
         errorDriver = presenter.errors.asDriver(onErrorJustReturn: .serverFailed(newsType: .unknown))
@@ -233,6 +237,8 @@ class NewsViewController: BaseViewController {
                 guard let `self` = self else { return }
 
                 self.hideNotify()
+
+                self.lastReadMark = self.tempReadMark
 
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
 
