@@ -122,21 +122,14 @@ class TopicViewController: BaseViewController {
 
         // update lastcursor
         dataDriver.filter { $0.count > 0 }
-            .map { $0.last }
+            .map { ($0.first, $0.last) }
             .asObservable()
-            .subscribe(onNext: { [weak self] item in
-                guard let `self` = self else { return }
+            .subscribe(onNext: { [weak self] pair in
+                guard let `self` = self, let first = pair.0, let last = pair.1,
+                    let firstId = first.id else { return }
 
-                self.lastCursor = String(item!.order!)
-            }).disposed(by: disposeBag)
-
-        dataDriver.filter { $0.count > 0 }
-            .map { $0.first }
-            .asObservable()
-            .subscribe(onNext: { [weak self] item in
-                guard let `self` = self, let id = item?.id else { return }
-
-                self.tempReadMark = id
+                self.lastCursor = String(last.order!)
+                self.tempReadMark = firstId
             }).disposed(by: disposeBag)
 
         errorDriver = presenter.errors.asDriver(onErrorJustReturn: .serverFailed(newsType: .unknown))
