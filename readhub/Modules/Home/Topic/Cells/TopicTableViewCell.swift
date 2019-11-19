@@ -88,7 +88,7 @@ class TopicTableViewCell: UITableViewCell {
         addSubview(timeLabel)
         timeLabel.snp.makeConstraints({ make in
             make.top.equalTo(summaryLabel.snp.bottom).offset(kMargin4)
-            make.left.right.equalToSuperview().inset(kMargin3)
+            make.left.right.bottom.equalToSuperview().inset(kMargin3)
         })
 
         newsTableView = UITableView().then {
@@ -98,22 +98,14 @@ class TopicTableViewCell: UITableViewCell {
             $0.register(TopicNewsTableViewCell.self, forCellReuseIdentifier: newsCellId)
         }
         addSubview(newsTableView)
-        newsTableView.snp.makeConstraints { make in
-            make.top.equalTo(timeLabel.snp.bottom).offset(kMargin3).priority(.low)
-            make.left.right.equalToSuperview().inset(kMargin3)
-            make.height.equalTo(1).priority(.high)
-        }
+        newsTableView.isHidden = true
 
         goBtn = UIButton().then {
             $0.setTitle("", for: .normal)
             $0.setTitleColor(kThemeSecondaryColor, for: .normal)
         }
         addSubview(goBtn)
-        goBtn.snp.makeConstraints { make in
-            make.top.equalTo(newsTableView.snp.bottom)
-            make.height.equalTo(1).priority(.high)
-            make.width.bottom.equalToSuperview()
-        }
+        goBtn.isHidden = true
 
         let hline = UIView().then {
             $0.backgroundColor = kThemeFont3Color
@@ -177,14 +169,36 @@ class TopicTableViewCell: UITableViewCell {
             news.accept(newsList)
         }
 
-        newsTableView.snp.updateConstraints { make in
-            make.top.equalTo(timeLabel.snp.bottom).offset(model.expanded ? kMargin : kMargin3)
-                .priority(.low)
-            make.height.equalTo(model.expanded ? Metrics.cellHeight * CGFloat(newsList.count) : 1).priority(.high)
+        newsTableView.isHidden = !model.expanded
+        goBtn.isHidden = !model.expanded
+
+        // update constraints
+        timeLabel.snp.remakeConstraints { (make) in
+            make.top.equalTo(summaryLabel.snp.bottom).offset(kMargin4)
+            make.left.right.equalToSuperview().inset(kMargin3)
+            
+            if !model.expanded {
+                make.bottom.equalToSuperview().inset(kMargin3).priority(.low)
+            }
+        }
+        
+        newsTableView.snp.remakeConstraints { make in
+            if model.expanded {
+                make.top.equalTo(timeLabel.snp.bottom).offset(kMargin).priority(.low)
+                make.left.right.equalToSuperview().inset(kMargin3)
+                make.height.equalTo(Metrics.cellHeight * CGFloat(newsList.count)).priority(.low)
+            }
         }
 
-        goBtn.snp.updateConstraints { make in
-            make.height.equalTo(model.expanded ? Metrics.goButtonHeight : 1).priority(.high)
+        goBtn.snp.remakeConstraints { make in
+            if model.expanded {
+                make.top.equalTo(newsTableView.snp.bottom).priority(.low)
+                make.height.equalTo(Metrics.goButtonHeight).priority(.low)
+                make.centerX.equalToSuperview()
+                make.bottom.equalToSuperview().inset(kMargin3).priority(.low)
+            }
         }
+
+        updateConstraints()
     }
 }

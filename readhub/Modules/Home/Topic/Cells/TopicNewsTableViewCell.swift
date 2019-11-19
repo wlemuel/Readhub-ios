@@ -57,7 +57,7 @@ class TopicNewsTableViewCell: UITableViewCell {
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.left.equalToSuperview().offset(kMargin3)
+            make.left.equalToSuperview().offset(kMargin3).priority(.high)
             make.right.equalToSuperview()
         }
 
