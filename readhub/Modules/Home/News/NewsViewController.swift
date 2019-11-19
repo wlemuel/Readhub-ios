@@ -119,7 +119,7 @@ class NewsViewController: BaseViewController {
         }
 
         dataDriver.drive(tableView!.rx.items(cellIdentifier: cellId, cellType: NewsTableViewCell.self)) { _, model, cell in
-            cell.setValueForCell(model: model, enableReadMark: model.id == self.lastReadMark)
+            cell.setValueForCell(model: model, showReadMark: model.id == self.lastReadMark)
         }.disposed(by: disposeBag)
 
         dataDriver.map { _ in true }

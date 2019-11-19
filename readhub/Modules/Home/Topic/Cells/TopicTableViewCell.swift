@@ -37,6 +37,7 @@ class TopicTableViewCell: UITableViewCell {
     var timeLabel: UILabel!
     var newsTableView: UITableView!
     var goBtn: UIButton!
+    var markLabel: UILabel!
 
     private var topicId: String = ""
 
@@ -91,6 +92,15 @@ class TopicTableViewCell: UITableViewCell {
             make.left.right.bottom.equalToSuperview().inset(kMargin3)
         })
 
+        markLabel = UILabel().then {
+            $0.textColor = kThemeFont2Color
+            $0.font = UIFont.systemFont(ofSize: Metrics.summaryFontSize)
+            $0.text = kMsgReadMark
+            $0.textAlignment = .center
+        }
+        addSubview(markLabel)
+        markLabel.isHidden = true
+
         newsTableView = UITableView().then {
             $0.rowHeight = Metrics.cellHeight
             $0.separatorStyle = .none
@@ -144,7 +154,7 @@ class TopicTableViewCell: UITableViewCell {
             }).disposed(by: rx.disposeBag)
     }
 
-    func setValueForCell(model: TopicItemModel) {
+    func setValueForCell(model: TopicItemModel, showReadMark: Bool = false) {
         topicId = model.id ?? ""
 
         titleLabel.text = model.title
@@ -171,17 +181,26 @@ class TopicTableViewCell: UITableViewCell {
 
         newsTableView.isHidden = !model.expanded
         goBtn.isHidden = !model.expanded
+        markLabel.isHidden = model.expanded || !showReadMark
 
         // update constraints
-        timeLabel.snp.remakeConstraints { (make) in
+        timeLabel.snp.remakeConstraints { make in
             make.top.equalTo(summaryLabel.snp.bottom).offset(kMargin4)
             make.left.right.equalToSuperview().inset(kMargin3)
-            
-            if !model.expanded {
+
+            if !model.expanded && !showReadMark {
                 make.bottom.equalToSuperview().inset(kMargin3).priority(.low)
             }
         }
-        
+
+        markLabel.snp.remakeConstraints { make in
+            make.bottom.left.right.equalToSuperview().inset(kMargin3)
+
+            if !model.expanded && showReadMark {
+                make.top.equalTo(timeLabel.snp.bottom).offset(kMargin3).priority(.low)
+            }
+        }
+
         newsTableView.snp.remakeConstraints { make in
             if model.expanded {
                 make.top.equalTo(timeLabel.snp.bottom).offset(kMargin).priority(.low)

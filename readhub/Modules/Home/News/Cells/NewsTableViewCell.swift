@@ -95,7 +95,7 @@ class NewsTableViewCell: UITableViewCell {
         }
     }
 
-    func setValueForCell(model: NewsItemModel, enableReadMark: Bool = false) {
+    func setValueForCell(model: NewsItemModel, showReadMark: Bool = false) {
         titleLabel.text = model.title
         summaryLabel.text = model.summary
 
@@ -107,14 +107,14 @@ class NewsTableViewCell: UITableViewCell {
         timeLabel.text = "\(siteName) \(seperator) \(authorName)  \(timestamp)"
 
 //        summaryLabel.setLineSpacing(lineHeightMultiple: 1.2)
-        markLabel.isHidden = !enableReadMark
+        markLabel.isHidden = !showReadMark
 
         // update constraints
         timeLabel.snp.remakeConstraints { make in
             make.top.equalTo(summaryLabel.snp.bottom).offset(kMargin3)
             make.left.right.equalToSuperview().inset(kMargin3)
 
-            if !enableReadMark {
+            if !showReadMark {
                 make.bottom.equalToSuperview().inset(kMargin3).priority(.low)
             }
         }
@@ -122,7 +122,7 @@ class NewsTableViewCell: UITableViewCell {
         markLabel.snp.remakeConstraints { make in
             make.bottom.left.right.equalToSuperview().inset(kMargin3)
 
-            if enableReadMark {
+            if showReadMark {
                 make.top.equalTo(timeLabel.snp.bottom).offset(kMargin3).priority(.low)
             }
         }
