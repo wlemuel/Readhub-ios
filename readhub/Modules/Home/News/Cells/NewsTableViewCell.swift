@@ -25,6 +25,7 @@ class NewsTableViewCell: UITableViewCell {
     var titleLabel: UILabel!
     var summaryLabel: UILabel!
     var timeLabel: UILabel!
+    var markLabel: UILabel!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -71,6 +72,18 @@ class NewsTableViewCell: UITableViewCell {
             make.left.right.bottom.equalToSuperview().inset(kMargin3)
         })
 
+        markLabel = UILabel().then {
+            $0.textColor = kThemeFont2Color
+            $0.font = UIFont.systemFont(ofSize: Metrics.summaryFontSize)
+            $0.text = kMsgReadMark
+            $0.textAlignment = .center
+        }
+        addSubview(markLabel)
+        markLabel.snp.makeConstraints { make in
+            make.bottom.left.right.equalToSuperview()
+        }
+        markLabel.isHidden = true
+
         let hline = UIView().then {
             $0.backgroundColor = kThemeFont3Color
         }
@@ -82,7 +95,7 @@ class NewsTableViewCell: UITableViewCell {
         }
     }
 
-    func setValueForCell(model: NewsItemModel) {
+    func setValueForCell(model: NewsItemModel, enableReadMark: Bool = false) {
         titleLabel.text = model.title
         summaryLabel.text = model.summary
 
@@ -94,13 +107,26 @@ class NewsTableViewCell: UITableViewCell {
         timeLabel.text = "\(siteName) \(seperator) \(authorName)  \(timestamp)"
 
 //        summaryLabel.setLineSpacing(lineHeightMultiple: 1.2)
-    }
+        markLabel.isHidden = !enableReadMark
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
+        // update constraints
+        timeLabel.snp.remakeConstraints { make in
+            make.top.equalTo(summaryLabel.snp.bottom).offset(kMargin3)
+            make.left.right.equalToSuperview().inset(kMargin3)
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+            if !enableReadMark {
+                make.bottom.equalToSuperview().inset(kMargin3).priority(.low)
+            }
+        }
+
+        markLabel.snp.remakeConstraints { make in
+            make.bottom.left.right.equalToSuperview().inset(kMargin3)
+
+            if enableReadMark {
+                make.top.equalTo(timeLabel.snp.bottom).offset(kMargin3).priority(.low)
+            }
+        }
+
+        updateConstraints()
     }
 }
